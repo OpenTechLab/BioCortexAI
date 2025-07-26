@@ -23,8 +23,10 @@ This architecture enables machines to:
 - Develop new forms of adaptive, non-human intelligence
 
 Learn more & try it
-Read the theoretical background: A Functional and Non-Anthropocentric Definition of Consciousness.
-Explore hybrid AI architectures based on plant computation and distributed modulation.
+- Read the theoretical background:  
+  [A Functional and Non-Anthropocentric Definition of Consciousness](https://zenodo.org/records/16041392)
+- Explore hybrid AI architectures:  
+  [Hybrid Architectures of Artificial Intelligence for Adaptive Systems](https://zenodo.org/records/16041708)
 
 Project highlights:
 Written in PyTorch, modular and ready for research
