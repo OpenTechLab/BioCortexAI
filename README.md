@@ -36,4 +36,14 @@ Developed by OpenTechLab Jablonec nad Nisou s. r. o., led by Michal Seidl and te
 
 LICENCE
 Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
-Free for non-commercial use. Commercial licensing available on request.
+
+You are free to:
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+- Attribution — You must give appropriate credit.
+- NonCommercial — You may not use the material for commercial purposes.
+
+Full license text: https://creativecommons.org/licenses/by-nc/4.0/legalcode
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
