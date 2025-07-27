@@ -55,6 +55,7 @@ Learn more & try it
 Project highlights:
 Written in PyTorch, modular and ready for research
 Easily customizable emotion/memory layer
+This modulation layer is designed to be architecture-agnostic within the transformer paradigm, allowing for an 'emotional upgrade' of existing transformer-based Large Language Models (LLMs).
 For use in affective computing, adaptive agents, consciousness research, and more
 
 Stay tuned for the first release. Contributions, research collaborations, and feedback are welcome!
