@@ -47,8 +47,10 @@ This architecture enables machines to:
 Learn more & try it
 - Read the theoretical background:  
   [A Functional and Non-Anthropocentric Definition of Consciousness](https://zenodo.org/records/16041392)
+  DOI 10.5281/zenodo.16041391
 - Explore hybrid AI architectures:  
   [Hybrid Architectures of Artificial Intelligence for Adaptive Systems](https://zenodo.org/records/16041708)
+  DOI 10.5281/zenodo.16041707
 
 Project highlights:
 Written in PyTorch, modular and ready for research
