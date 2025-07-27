@@ -1,4 +1,4 @@
-# BioCotrexAI
+# BioCortexAI
 BioCortex AI: Emotionally Modulated Artificial Intelligence
 
 BioCortex AI is an open-source, biologically inspired artificial intelligence framework that integrates neural networks with distributed, plant-inspired biochemical modulation.
