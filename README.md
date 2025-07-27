@@ -4,6 +4,28 @@ BioCortex AI: Emotionally Modulated Artificial Intelligence
 BioCortex AI is an open-source, biologically inspired artificial intelligence framework that integrates neural networks with distributed, plant-inspired biochemical modulation.
 Our system doesn’t rely on static computation — it’s driven by internal states formed through lived digital experience, creating an adaptive, emotionally guided synthetic mind.
 
+## FrameworkGPTalfa (Alpha Release)
+
+The repository now includes **FrameworkGPTalfa**, an experimental alpha version of the BioCortexAI framework:
+- **Location:** /FrameworkGPTalfa_v1.0.zip
+- **Contents:**
+  - config.py — model configuration and hyperparameters
+  - all_text.py — dataset preparation script
+  - train_model.py — training pipeline with biochemical attention modulation
+  - model_tester.py — interactive CLI chatbot with emotion control
+  - README.md — detailed setup and scientific background
+
+### How to Get Started
+1. **Unzip** the FrameworkGPTalfa_v1.0.zip.
+2. Follow the steps described in FrameworkGPTalfa/README.md to:
+   - Prepare dataset (all_text.py)
+   - Train the transformer model (train_model.py)
+   - Test via CLI interface with biochemical signals (model_tester.py)
+
+This alpha release demonstrates how transformer attention can be **dynamically modulated by hormone-inspired signals** (dopamine, serotonin, cortisol, oxytocin), creating an adaptive and emotion-driven synthetic mind.
+
+---
+
 How does it work?
 BioCortex AI combines transformer-based neural networks with a dynamic, “hormonal” modulation layer inspired by distributed plant signaling and biochemistry.
 Instead of fixed parameters, the system employs real-time signals — such as dopamine, serotonin, cortisol, and oxytocin — to alter attention, memory, and behavioral strategies.
