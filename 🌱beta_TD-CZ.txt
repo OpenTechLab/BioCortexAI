@@ -1,0 +1,173 @@
+======================================================================
+                  TECHNICKÁ DOKUMENTACE: BioCortexAI
+                             Verze: beta 1.0
+======================================================================
+ (c) 2025, OpenTechLab Jablonec nad Nisou s. r. o.
+ Autor: Michal Seidl
+
+
+1. PŘEHLED SYSTÉMU
+----------------------------------------------------------------------
+
+BioCortexAI je hybridní architektura umělé inteligence, která integruje
+standardní velký jazykový model (LLM) architektury Transformer s
+dynamickou, biologicky inspirovanou modulační vrstvou nazvanou 
+"rostlinná síť" (PlantNet).
+
+Cílem systému není měnit natrénované váhy LLM během inference, ale v
+reálném čase modulovat jeho výpočetní proces. To dává modelu vnitřní
+stav podobný "náladě", schopnost tvořit si asociativní "vzpomínky"
+a dlouhodobě adaptovat svou "osobnost" na základě interakcí.
+
+Výsledkem je AI, která se chová méně mechanicky, je kontextuálně 
+citlivější a jejíž reakce jsou ovlivněny historií předchozích rozhovorů.
+
+
+2. ARCHITEKTURA A KLÍČOVÉ KOMPONENTY
+----------------------------------------------------------------------
+
+Projekt se skládá ze dvou hlavních, vzájemně propojených částí:
+
+   A. Jazykový model (LLM)
+      - Definován v: `model.py`
+      - Architektura: Moderní Decoder-Only Transformer.
+      - Klíčové technologie:
+          - Rotary Positional Embeddings (RoPE) pro poziční kódování.
+          - SwiGLU feed-forward vrstvy pro vyšší efektivitu.
+          - Grouped-Query Attention (GQA) pro optimalizaci paměti a rychlosti.
+      - Úkol: Zpracování jazyka, generování koherentních odpovědí.
+
+   B. Rostlinná síť (PlantNet) - Modulační vrstva
+      - Definován v: `plant_net.py`
+      - Architektura: Distribuovaná 2D mřížka samoorganizujících se buněk.
+      - Úkol: Analyzovat výstupy LLM a interakce s uživatelem, udržovat
+        vnitřní stav ("náladu") a na jeho základě dynamicky modulovat
+        chování LLM v reálném čase.
+
+
+3. ROSTLINNÁ SÍŤ (PLANTNET) - DETAILNÍ POPIS
+----------------------------------------------------------------------
+
+PlantNet je jádrem unikátního chování BioCortexAI. Její design je
+inspirován koncepty distribuovaných výpočtů v biologických systémech.
+
+   3.1. Hormonální systém (Vnitřní stav)
+   ---------------------------------------
+   Vnitřní stav je reprezentován čtyřmi "hormony", jejichž hladina je
+   centrovaná kolem neutrální hodnoty 1.0:
+      - Dopamin: Spojen se zvědavostí, kreativitou a odměnou za nové informace.
+      - Serotonin: Spojen se stabilitou, pohodou a koherencí.
+      - Kortizol: Spojen se stresem, nejistotou a opatrností.
+      - Oxytocin: Spojen se sociální vazbou a udržováním kontextu.
+
+   Hladina = 1.0 -> Žádný vliv (standardní chování LLM).
+   Hladina > 1.0 -> Zesilující vliv.
+   Hladina < 1.0 -> Potlačující vliv.
+
+   3.2. Distribuovaná síť buněk
+   -----------------------------
+   Síť je 2D mřížka (`DistributedPlantNetwork`) složená z buněk
+   (`PlantCell`), jejíž struktura je definována v `config.py` (PLANT_TISSUE_MAP).
+   Existují specializované typy buněk:
+      - SensorCell: Vysoce citlivá na vnější podněty (entropie, sentiment).
+      - MemoryCell: Má větší a trvalejší asociativní paměť.
+      - StructuralCell: Má stabilnější spojení, slouží k efektivnímu přenosu signálů.
+      - PlantCell: Standardní, vyvážená buňka.
+
+   3.3. Tři úrovně adaptivního učení
+   ----------------------------------
+   Síť se neustále učí a adaptuje bez použití zpětné propagace:
+      1. Krátkodobá (reakce): Okamžitá změna hormonů na základě posledního
+         výstupu LLM a vstupu uživatele.
+      2. Střednědobá (paměť a plasticita):
+         - Asociativní paměť (`AssociativeMemory`): Ukládá kontextové
+           vektory interakcí. "Emocionálně" silné zážitky (velká
+           odchylka hormonů) se zapomínají pomaleji.
+         - Dynamická konektivita: Síla spojení mezi buňkami se pomalu
+           mění na základě oxytocinu (posiluje) a kortizolu (oslabuje),
+           což mění preferované cesty šíření informací v síti.
+      3. Dlouhodobá (osobnost):
+         - Drift osobnosti (`_personality_drift`): Rovnovážné hladiny
+           hormonů se velmi pomalu posouvají směrem k průměrným
+           hodnotám, které síť zažívá. Dlouhodobý stres tak může
+           trvale změnit "základní povahu" modelu.
+
+
+4. PROPOJENÍ LLM A PLANTNET
+----------------------------------------------------------------------
+
+Propojení je realizováno jako zpětnovazební smyčka v reálném čase.
+
+   KROK 1: Modulace LLM (Feed-forward)
+   -----------------------------------
+   - PlantNet poskytne aktuální globální stav hormonů.
+   - V `model.py` (`TransformerBlock` a `Attention`) tyto hormony modulují výpočet:
+     - Dopamin: Násobí `Value` vektory v mechanismu pozornosti, čímž
+       ovlivňuje, jakou váhu model přikládá zpozorovaným informacím.
+     - Serotonin, Kortizol, Oxytocin: Modulují sílu zbytkových spojení
+       (residual connections), čímž ovlivňují stabilitu, koherenci a
+       potlačení signálu při "stresu".
+
+   KROK 2: Zpětná vazba do PlantNet (Feedback)
+   -------------------------------------------
+   - LLM provede `forward` pass a vrátí `logits` a `hidden_states`.
+   - Řídící skript (`generate.py`, `chat_ui.py`) zavolá `plant_layer.update_state()`.
+   - `PlantLayer` z výstupů LLM a textu uživatele vypočítá 4 signály:
+     1. Entropie: Z `logits`. Míra nejistoty modelu. Vysoká entropie
+        zvyšuje kortizol.
+     2. Latentní odchylka: Z `hidden_states`. Míra změny tématu.
+        Velká odchylka zvyšuje dopamin.
+     3. Sentiment: Z textu (`sentiment_analyzer.py`). Ovlivňuje všechny hormony.
+     4. Kontextový vektor: Z `hidden_states`. Ukládá se do asociativní paměti.
+
+   Tento cyklus se opakuje s každou interakcí a udržuje dynamický stav.
+
+
+5. PRACOVNÍ POSTUP A SKRIPTY
+----------------------------------------------------------------------
+
+Systém má jasně definovaný a oddělený pracovní postup.
+
+   5.1. Fáze 1: Příprava dat
+   -------------------------
+   - Cíl: Připravit textový korpus pro trénink.
+   - Skripty v `nastroje_pro_data/`:
+     - `preprocess_corpus.py`: Zpracuje syrové texty do jednoho čistého souboru.
+     - `prepare_tokenizer.py`: Natrénuje BPE tokenizér.
+     - `chunk_corpus.py`: Převede text na binární bloky pro efektivní načítání.
+
+   5.2. Fáze 2: Trénink LLM
+   ------------------------
+   - Cíl: Vytvořit natrénované váhy pro základní LLM.
+   - Skripty: `pretrain.py`, `finetune.py`.
+   - Důležité: Během tréninku je PlantNet VŽDY neaktivní (`USE_PLANT_NETWORK = False`).
+     To zaručuje, že se LLM učí čisté jazykové vzorce bez modulačního zkreslení.
+
+   5.3. Fáze 3: Export modelu pro nasazení
+   ---------------------------------------
+   - Cíl: Vytvořit jeden soběstačný soubor s modelem pro distribuci.
+   - Skript: `export_model.py`.
+   - Zabalí tréninkový checkpoint, konfiguraci a **čistý, výchozí stav PlantNet**
+     do jednoho souboru (`.pth`).
+
+   5.4. Fáze 4: Interakce a inference
+   ----------------------------------
+   - Cíl: Používat finální, stavový chatbot.
+   - Skripty: `generate.py` (CLI), `chat_UI.py` (Gradio UI).
+   - Načtou exportovaný `.pth` soubor. PlantNet je plně aktivní.
+   - Stav PlantNet se automaticky ukládá a načítá ze souboru
+     `plant_net_state.json`, čímž je zachována kontinuita mezi spuštěními.
+
+
+6. KONFIGURACE
+----------------------------------------------------------------------
+Veškeré parametry systému jsou centralizovány v souboru `config.py`.
+- Architektura modelu (velikost, počet vrstev, hlav).
+- Parametry tréninku (learning rate, batch size).
+- Cesty k datům a checkpointům.
+- `PLANT_TISSUE_MAP`: Definuje strukturu a "osobnost" jednotlivých buněk v síti PlantNet.
+- `USE_PLANT_NETWORK`: Globální přepínač pro aktivaci/deaktivaci modulační vrstvy.
+
+======================================================================
+                         KONEC DOKUMENTACE
+======================================================================

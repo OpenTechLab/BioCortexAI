@@ -1,0 +1,175 @@
+======================================================================
+                  TECHNICAL DOCUMENTATION: BioCortexAI
+                             Version: beta 1.0
+======================================================================
+ (c) 2025, OpenTechLab Jablonec nad Nisou s. r. o.
+ Author: Michal Seidl
+
+
+1. SYSTEM OVERVIEW
+----------------------------------------------------------------------
+
+BioCortexAI is a hybrid artificial intelligence architecture that integrates
+a standard Transformer-based Large Language Model (LLM) with a
+dynamic, biologically-inspired modulation layer called the
+"Plant Network" (PlantNet).
+
+The system's goal is not to alter the trained weights of the LLM during
+inference, but to modulate its computational process in real-time.
+This gives the model an internal state akin to a "mood," the ability
+to form associative "memories," and to adapt its "personality"
+over the long term based on interactions.
+
+The result is an AI that behaves less mechanically, is more contextually
+sensitive, and whose responses are influenced by the history of
+previous conversations.
+
+
+2. ARCHITECTURE AND KEY COMPONENTS
+----------------------------------------------------------------------
+
+The project consists of two main, interconnected parts:
+
+   A. Language Model (LLM)
+      - Defined in: `model.py`
+      - Architecture: Modern Decoder-Only Transformer.
+      - Key Technologies:
+          - Rotary Positional Embeddings (RoPE) for position encoding.
+          - SwiGLU feed-forward layers for enhanced efficiency.
+          - Grouped-Query Attention (GQA) for memory and speed optimization.
+      - Task: Processing language, generating coherent responses.
+
+   B. Plant Network (PlantNet) - Modulation Layer
+      - Defined in: `plant_net.py`
+      - Architecture: A distributed 2D grid of self-organizing cells.
+      - Task: To analyze LLM outputs and user interactions, maintain an
+        internal state ("mood"), and dynamically modulate the LLM's
+        behavior in real-time based on this state.
+
+
+3. PLANT NETWORK (PLANTNET) - DETAILED DESCRIPTION
+----------------------------------------------------------------------
+
+PlantNet is the core of BioCortexAI's unique behavior. Its design is
+inspired by concepts from distributed computing in biological systems.
+
+   3.1. Hormonal System (Internal State)
+   ---------------------------------------
+   The internal state is represented by four "hormones," whose levels are
+   centered around a neutral value of 1.0:
+      - Dopamine: Associated with curiosity, creativity, and reward from new information.
+      - Serotonin: Associated with stability, well-being, and coherence.
+      - Cortisol: Associated with stress, uncertainty, and caution.
+      - Oxytocin: Associated with social bonding and maintaining context.
+
+   Level = 1.0 -> No influence (standard LLM behavior).
+   Level > 1.0 -> Amplifying influence.
+   Level < 1.0 -> Suppressing influence.
+
+   3.2. Distributed Cell Network
+   -----------------------------
+   The network is a 2D grid (`DistributedPlantNetwork`) composed of cells
+   (`PlantCell`), with its structure defined in `config.py` (PLANT_TISSUE_MAP).
+   There are specialized cell types:
+      - SensorCell: Highly sensitive to external stimuli (entropy, sentiment).
+      - MemoryCell: Has a larger and more persistent associative memory.
+      - StructuralCell: Has more stable connections, serving for efficient signal transfer.
+      - PlantCell: A standard, balanced cell.
+
+   3.3. Three Levels of Adaptive Learning
+   ----------------------------------
+   The network continuously learns and adapts without using backpropagation:
+      1. Short-term (Reaction): Immediate change in hormones based on the last
+         LLM output and user input.
+      2. Medium-term (Memory and Plasticity):
+         - Associative Memory (`AssociativeMemory`): Stores contextual
+           vectors of interactions. "Emotionally" strong experiences (large
+           hormone deviation) are forgotten more slowly.
+         - Dynamic Connectivity: The strength of connections between cells
+           slowly changes based on oxytocin (strengthens) and cortisol
+           (weakens), altering preferred information pathways in the network.
+      3. Long-term (Personality):
+         - Personality Drift (`_personality_drift`): The equilibrium levels
+           of hormones very slowly shift towards the average
+           values experienced by the network. Thus, long-term stress can
+           permanently change the model's "base nature."
+
+
+4. LLM AND PLANTNET INTEGRATION
+----------------------------------------------------------------------
+
+The integration is implemented as a real-time feedback loop.
+
+   STEP 1: LLM Modulation (Feed-forward)
+   -----------------------------------
+   - PlantNet provides the current global hormone state.
+   - In `model.py` (`TransformerBlock` and `Attention`), these hormones modulate the computation:
+     - Dopamine: Multiplies the `Value` vectors in the attention mechanism,
+       influencing how much weight the model gives to observed information.
+     - Serotonin, Cortisol, Oxytocin: Modulate the strength of residual
+       connections, thereby affecting stability, coherence, and
+       signal suppression under "stress."
+
+   STEP 2: Feedback to PlantNet
+   --------------------------------
+   - The LLM performs a `forward` pass and returns `logits` and `hidden_states`.
+   - The controlling script (`generate.py`, `chat_ui.py`) calls `plant_layer.update_state()`.
+   - `PlantLayer` calculates 4 signals from the LLM's output and user text:
+     1. Entropy: From `logits`. A measure of the model's uncertainty.
+        High entropy increases cortisol.
+     2. Latent Deviation: From `hidden_states`. A measure of topic change.
+        Large deviation increases dopamine.
+     3. Sentiment: From the text (`sentiment_analyzer.py`). Affects all hormones.
+     4. Context Vector: From `hidden_states`. Stored in associative memory.
+
+   This cycle repeats with each interaction, maintaining a dynamic state.
+
+
+5. WORKFLOW AND SCRIPTS
+----------------------------------------------------------------------
+
+The system has a clearly defined and separated workflow.
+
+   5.1. Phase 1: Data Preparation
+   -------------------------
+   - Goal: Prepare the text corpus for training.
+   - Scripts in `nastroje_pro_data/`:
+     - `preprocess_corpus.py`: Processes raw texts into a single clean file.
+     - `prepare_tokenizer.py`: Trains a BPE tokenizer.
+     - `chunk_corpus.py`: Converts text into binary chunks for efficient loading.
+
+   5.2. Phase 2: LLM Training
+   ------------------------
+   - Goal: Create the trained weights for the base LLM.
+   - Scripts: `pretrain.py`, `finetune.py`.
+   - Important: During training, PlantNet is ALWAYS inactive (`USE_PLANT_NETWORK = False`).
+     This ensures the LLM learns pure language patterns without any modulation bias.
+
+   5.3. Phase 3: Model Export for Deployment
+   ---------------------------------------
+   - Goal: Create a single, self-contained model file for distribution.
+   - Script: `export_model.py`.
+   - It packages the training checkpoint, configuration, and a **clean, default state of PlantNet**
+     into a single file (`.pth`).
+
+   5.4. Phase 4: Interaction and Inference
+   ----------------------------------
+   - Goal: Use the final, stateful chatbot.
+   - Scripts: `generate.py` (CLI), `chat_UI.py` (Gradio UI).
+   - They load the exported `.pth` file. PlantNet is fully active.
+   - The PlantNet state is automatically saved to and loaded from
+     `plant_net_state.json`, preserving continuity between sessions.
+
+
+6. CONFIGURATION
+----------------------------------------------------------------------
+All system parameters are centralized in the `config.py` file.
+- Model architecture (size, number of layers, heads).
+- Training parameters (learning rate, batch size).
+- Paths to data and checkpoints.
+- `PLANT_TISSUE_MAP`: Defines the structure and "personality" of individual cells in the PlantNet.
+- `USE_PLANT_NETWORK`: A global switch to activate/deactivate the modulation layer.
+
+======================================================================
+                         END OF DOCUMENTATION
+======================================================================

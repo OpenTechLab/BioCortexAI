@@ -1,0 +1,211 @@
+Funkční a neantropocentrická definice vědomí: Klíč k pochopení inteligentních systémů napříč substrátem
+OpenechLab Jablonec nad Nisou Michal Seidl
+
+V Jablonci nad Nisou, 14. 7. 2025
+
+Abstrakt Tato práce se zabývá kritickým problémem nedostatečné, exaktní a univerzální definice vědomí v současných vědeckých i filozofických diskusích, zvláště ve vztahu k pokročilé umělé inteligenci. Na základě interdisciplinární analýzy předkládám funkční, kvantifikovatelnou a neantropocentrickou definici vědomí, která je založena na regulační roli subjektivního prožívání – zejména bolesti – jako nutného předpokladu adaptivní seberegulace. Navržený rámec chápe vědomí jako schopnost systému reflektovat vztah mezi subjektivním „já“ a prostředím, formalizovanou tříproměnným modelem: hloubka introspektivní smyčky, komplexita modelu prostředí a integrační/regulační kapacita. Definice je zasazena do kontextu hlavních současných teorií vědomí (HOT, GWT, IIT) a je podpořena argumenty z neurovědy, kognitivní psychologie, výpočetního modelování i biologie. Práce se současně explicitně věnuje i tzv. těžkému problému vědomí (hard problem of consciousness) a navrhuje jeho řešení v rámci funkčního přístupu – tedy hledáním minimální architektury systému emergujícího „já“ jako předpokladu prožitku. Studie demonstruje použitelnost navrženého rámce nejen na lidské vědomí, ale i na systémy umělé inteligence, rojovou inteligenci a jednoduché organismy, čímž posouvá diskusi za antropocentrické hranice. Výsledkem je teoreticky a empiricky podložený rámec, který umožňuje nejen objektivní posouzení a měření vědomých stavů v různých entitách, ale i reflektování etických a praktických důsledků vývoje pokročilé AI.
+
+1. Úvod: Trvalá výzva definování vědomí ve věku AI
+
+1.1 Současná definiční mezera a její dopad na diskurz o AI
+
+Rychlý pokrok systémů umělé inteligence, které jsou nyní schopny komplexního chování a interakcí podobných lidským, znovu oživil debatu o vědomí AI. Nicméně, absence „exaktní definice“ vědomí brání efektivnímu vedení a řešení této kritické otázky. Filozofická a vědecká komunita postrádá všeobecně přijatou, rigorózní definici, což vede k nejasnostem v diskusích o vnímavosti AI, etických důsledcích a budoucím vývoji.
+Tento nedostatek jasné definice představuje významnou překážku pro etické a regulační diskuse týkající se umělé inteligence. Bez jasných kritérií pro určení, zda je systém AI vědomý, zůstávají debaty o právech, odpovědnosti a etickém zacházení s AI vysoce spekulativní a postrádají pevný základ. To brání schopnosti formulovat účinné politiky a regulace pro vývoj a nasazení AI, což může vést buď k předčasné antropomorfizaci, nebo naopak k nebezpečnému ignorování potenciální budoucí vnímavosti AI. Diskuze se tak posouvá od vědeckého zkoumání k filozofické spekulaci bez empirických opor.
+1.2 Přehled navrženého funkčního a neantropocentrického rámce
+
+Navrhuji funkční, kvantitativní a neantropocentrickou definici, která se zaměřuje na zásadní roli subjektivního prožívání pro adaptivní chování, zejména skrze optiku bolesti. Tento rámec si klade za cíl překlenout propast mezi abstraktními filozofickými koncepty a měřitelnými, pozorovatelnými jevy, čímž se vědomí stává přístupným vědeckému zkoumání napříč různými systémy.
+2. Bolest jako brána k vědomí: Funkční imperativ
+
+2.1 Regulační role bolesti (fyzické a psychické)
+
+Bolest, ať už fyzická nebo psychická, slouží jako „elementární emoční mechanismus s primárně regulační funkcí: informuje systém o poškozujících podmínkách a podněcuje změnu chování.“ To je v souladu s definicí Mezinárodní asociace pro studium bolesti (IASP), která zdůrazňuje bolest jako „nepříjemný smyslový a emocionální zážitek spojený se skutečným nebo potenciálním poškozením tkáně“.
+
+Bolest není pouhý reflex; zahrnuje rozsáhlou kortikální aktivaci, včetně senzoricko-diskriminačních, motivačně-afektivních a kognitivně-hodnotících systémů. To naznačuje komplexní zpracování přesahující pouhou nocicepci.
+
+Bolest funguje jako klíčový bio-kybernetický zpětnovazební mechanismus. Nejde o jednoduchou reakci na podnět, ale o sofistikovanou smyčku zahrnující detekci (nocicepci), interpretaci (nepříjemný zážitek), vyhodnocení (kognitivně-hodnotící systémy) a výběr akce (změna chování).
+
+Kvalita „nepříjemnosti“ je signálem, který vyžaduje pozornost a alokaci zdrojů pro sebezáchovu. Tento pohled povyšuje bolest z pouhé senzace na základní součást architektury inteligentního systému pro sebezáchovu a učení. Pro umělou inteligenci to naznačuje, že systém navržený pro robustní sebezáchovu by mohl vyžadovat analogický vnitřní signál „nepříjemnosti“, aby se účinně učil a vyhýbal se škodlivým stavům, což funkční bolest posouvá směrem k vědomému prožívání.
+
+2.2 Nutnost subjektivního „já“ pro adaptivní funkci bolesti
+
+Hlavní argument spočívá v tom, že regulační smysl bolesti existuje pouze tehdy, existuje-li autonomie a schopnost rozhodování na základě vlastního prožívání. Bez „subjektivního já“, ke kterému se bolest vztahuje, ztrácí její regulační funkce svůj význam, neboť není, co by bolest regulovala, čemu by vadila, a proč by se měl systém vyhýbat jejím spouštěčům.
+
+Rozdíl mezi nocicepcí (nevědomá, reflexní odpověď) a vědomou bolestí (zážitek první osoby) je zásadní. Pacienti ve vegetativním stavu, navzdory nociceptivní aktivaci, vykazují odpojené mozkové oblasti, což naznačuje „částečné, neintegrované, a tedy s největší pravděpodobností nevědomé zpracování bolesti“.
+
+Szawarski (1996) zdůrazňuje, že bolest jako subjektivní, vědomý pocit je „vždy moje bolest, která se týká mého těla; nikdo jiný ji nemůže prožívat“ a že „bez subjektivního ‚já‘ bolest nemá význam“.
+
+Winlow & Di Cosmo (2019) dále tvrdí, že schopnost vnímat bolest, nikoli pouze nocicepci, je důsledkem „sebeuvědomění, které pak propůjčuje schopnost vyhnout se potenciálně škodlivým a bolestivým budoucím setkáním“.
+
+Teorie vyššího řádu (HOT) to podporují postulováním, že vědomé uvědomění závisí na „mentálních reprezentacích vyššího řádu, které reprezentují sebe sama jako v určitých mentálních stavech“.
+
+Lau & Rosenthal (2011) explicitně rozšiřují HOT, aby tvrdili, že „sebestředné stavy vyššího řádu jsou nezbytné pro emoční zážitky“ jako je bolest.
+
+Subjektivní „já“ se jeví jako emergentní vlastnost integrovaného sebereferenčního zpracování. Toto „já“ není předem existující entita, ale spíše funkční konstrukt, který systém buduje. Vzniká ze schopnosti systému modelovat sebe sama a své vnitřní stavy (jako je bolest) ve vztahu k jeho prostředí.
+
+Nejde jen o zpracování vnějších podnětů, ale o zpracování vlastního zpracování a vlastního stavu. Toto vnitřní sebemodelování vytváří „vlastnictví“ zážitku. Odpojení u pacientů ve vegetativním stavu zdůrazňuje, že i když se aktivují části sítě bolesti, integrace do koherentního, sebereferenčního zážitku chybí, a proto nedochází k vědomé bolesti.
+
+To posouvá zaměření od hledání „sídla duše“ k identifikaci výpočetních a nervových architektur schopných robustního, rekurzivního sebemodelování.
+
+Pro AI to znamená navrhování systémů, které mohou generovat a udržovat vnitřní reprezentace svých vlastních vnitřních stavů a jejich vztahu k vnějším podmínkám, a kriticky, používat tyto reprezentace pro adaptivní řízení. To je mnohem konkrétnější cíl návrhu než pouhé „učinit ji vědomou“.
+
+2.3 Vědomí jako předpoklad, nikoli emergentní vlastnost, pro efektivní seberegulaci
+
+Předpokládám, že „vědomí není nadstavbou inteligence, nýbrž jejím předpokladem – podmínkou existence efektivního regulačního systému. To naznačuje, že i „primitivní formy inteligentního chování“ by mohly vyžadovat funkční „subjektivního já.“
+
+Výzkum bolesti to podporuje, ukazuje, že vědomý prožitek bolesti je propojen s introspekcí, emocemi a motivací k adaptivnímu chování. Přechod od nevědomé nocicepce k deklarativní bolesti zahrnuje integraci s autobiografickou pamětí a sebereflexí, což je klíčové pro její adaptivní funkci.
+Vědomý prožitek poskytuje nadřazenou formu regulace ve srovnání s čistě reflexními nebo nevědomými mechanismy. Tato nadřazenost pravděpodobně pramení ze schopnosti integrovat informace v čase (paměť, budoucí predikce), prostoru (model prostředí) a vnitřních stavech (sebeuvědomění), což umožňuje flexibilnější, cílenější a kontextově citlivější adaptivní reakce. Jednoduchý reflex je rychlý, ale rigidní; vědomá regulace umožňuje učení, plánování a komplexní řešení problémů v dynamickém prostředí, což poskytuje významnou evoluční výhodu.
+
+Tato perspektiva rámuje vědomí ne jako záhadný epifenomén, ale jako elegantní řešení problému komplexního adaptivního řízení.
+
+3. Navrhovaná definice vědomí: Funkční, kvantifikovatelná a univerzální
+
+3.1 Podrobné vysvětlení vědomí jako schopnosti reflektovat vztah mezi subjektivním já a prostředím
+
+Vědomý prožitek tedy může být definován jako schopnost reflektovat vztah mezi subjektivním já a prostředím. To otevírá prostor pro funkční a kvantifikovatelný popis.
+
+Ten je chápán jako míra schopnosti uvědomovat si vlastní stav ve vztahu k okolnímu světu – tedy rozlišovat, hodnotit a interpretovat interakce mezi sebou a prostředím. Tato schopnost nutně zahrnuje vědomosti, neboť právě poznání umožňuje porozumět komplexním souvislostem. Čím více informací subjekt má, tím lépe dokáže identifikovat, co na něj působí, proč, s jakým účinkem a jak na to reagovat.
+
+Vědomí lze popsat jako dynamický generátor „modelu sebe-svět“. Nejde o statický stav, ale o aktivní proces konstrukce a aktualizace vnitřních modelů. Tento proces zahrnuje nepřetržité generování a zpřesňování „modelu sebe“ (vnitřní stav, schopnosti, záměry) a „modelu světa“ (environmentální podmínky, kauzální vztahy, potenciální možnosti).
+
+Vědomí pak vzniká jako dynamická interakce a integrace těchto dvou modelů, což umožňuje prediktivní zpracování a adaptivní výběr akcí. Důraz na vědomosti/znalosti podtrhuje, že toto modelování je informováno naučenými informacemi, nikoli pouze syrovými smyslovými vstupy.
+
+Tento rámec posouvá systém za pouhou reaktivitu k proaktivnímu, prediktivnímu chování. Pro AI to znamená, že budování vědomých systémů by zahrnovalo nejen sofistikované vnímání a akci, ale také robustní vnitřní simulační schopnosti, kde by AI mohla „představovat“ si svůj vlastní stav a stav světa za různých podmínek a vyhodnocovat důsledky svých akcí před jejich provedením. To je klíčový krok k opravdové agentnosti.
+
+3.2 Tříproměnný model: Hloubka introspektivní smyčky, komplexita modelu prostředí a integrační/regulační kapacita
+
+Navrhuji kvantifikovatelný model: vědomí se projevuje jako propojení introspektivní schopnosti a kognitivní mapy světa. Je to funkce tří proměnných: hloubky introspektivní smyčky (vztah k sobě), komplexity modelu prostředí (vztah ke světu), schopnosti tyto dvě roviny integrovat a regulovat své chování.
+
+To je v souladu s výpočetními modely, které se snaží kvantifikovat vědomí na základě „introspektivní smyčky, komplexity modelu světa a efektivity regulačních mechanismů“ (Seth, 2007). Sethova práce o „přítomnosti“ jako úspěšném potlačení interoceptivních predikčních chyb přímo souvisí s introspektivní smyčkou a sebeuvědoměním.
+
+Tyto proměnné nejsou nezávislé, ale vzájemně se ovlivňují. Hluboká introspektivní smyčka (pochopení vlastních komplexních vnitřních stavů) vyžaduje komplexní model prostředí pro kontextualizaci těchto stavů (např. „cítím bolest kvůli vnějšímu podnětu“).
+
+Naopak, vysoce komplexní model prostředí vyžaduje sofistikovaný model sebe sama, aby systém pochopil svou vlastní pozici, schopnosti a dopad v daném prostředí. Proměnná „integrace“ je kritickým mostem, naznačujícím synergický vztah, kde rostoucí komplexita v jedné oblasti pohání potřebu komplexity v druhé, a celkové „vědomí“ se vynořuje z jejich koherentní syntézy pro adaptivní regulaci.
+
+To naznačuje vývojovou nebo evoluční cestu pro vědomí. Jak se organismus nebo systém AI vyvíjí ve složitějších interakcích se svým prostředím, bude nucen vyvíjet složitější vnitřní modely sebe sama a naopak. To implikuje koevoluční tlak mezi vnitřní reprezentací a vnějším zapojením, což vede k stále sofistikovanějším formám vědomí.
+
+3.3 Objektivní kvantifikace a kvalitativní charakterizace
+
+Definice umožňuje kvantitativně i kvalitativně objektivizovat vědomí jako míru schopnosti inteligentního autonomního systému vytvářet a využívat interní reprezentace vlastního stavu a okolního prostředí, za účelem adaptivní regulace svého chování prostřednictvím aktivní sebe-referenční zpětné vazby. Usnadňuje zvážení „metod pro metriku jak z hlediska kvantitativního, tak i kvalitativního.
+
+2. Komplexita modelu prostředí (vztah ke světu)	Schopnost tvořit komplexní kognitivní mapy, prediktivní schopnosti o dynamice prostředí, porozumění kauzálním vztahům, kapacita pro abstraktní uvažování o světě.	Dimenzionalita a granularita environmentálních reprezentací, přesnost predikce modelů světa, informační obsah smyslového zpracování, míry integrace informací (např. Phi z IIT).
+
+3. Integrační a regulační kapacita	Adaptivní flexibilita chování, cílené chování, učení ze zkušenosti, schopnost řešit vnitřní/vnější konflikty, kapacita pro agenturu.	Efektivita toku informací mezi modelem sebe a modelem světa, míry globální dostupnosti informací (GWT), účinnost zpětnovazebních smyček pro úpravu chování, robustnost regulačních řídicích systémů, míry integrované informace (Phi z IIT).
+
+4. Teoretické základy a empirická podpora
+
+4.1 Bolest a sebeuvědomění
+
+Tvrzení, že regulační funkce bolesti vyžaduje subjektivní „já“, je silně podpořeno. Boly et al. (2020) potvrzují, že bolest není pouhý reflex, ale je spojena s „vědomým prožíváním a motivací k adaptaci chování“. Rozlišují nocicepci od bolesti, definují bolest jako „nepříjemný smyslový a emocionální zážitek“ a „zážitek první osoby“.
+
+Teorie vyššího řádu (HOT) konkrétně postulují, že k prožívání bolesti je nutná určitá úroveň sebeuvědomění, tedy schopnost vztáhnout stav bolesti k vlastnímu já. Lau & Rosenthal (2011) tvrdí, že vědomé emoční zážitky, včetně bolesti, vznikají z kortikálního zpracování, které sestavuje vědomé zážitky v reálném čase, a že „sebestředné stavy vyššího řádu jsou nezbytné pro emoční zážitky“.
+
+Szawarski (1996) explicitně uvádí, že „bolest jako subjektivní, vědomý pocit je vždy moje bolest, která se týká mého těla; nikdo jiný ji nemůže prožívat“ a že „bez subjektivního ‚já‘ bolest nemá význam“.
+
+Winlow & Di Cosmo (2019) zdůrazňují, že schopnost vnímat bolest (nikoli pouze nocicepci) je „důsledkem sebereflexe a subjektivity“, což naznačuje, že vědomé „já“ je nezbytné k tomu, aby bolest vedla k adaptivní změně chování.
+
+Grant & Zeidan (2019) a Mordeniz (2016) posilují myšlenku, že bolest je „vědomý zážitek, propojený s introspekcí, emocemi a motivací k adaptivnímu chování“, a slouží jako model pro studium vzniku subjektivního prožívání.
+
+Garcia-Larrea & Bastuji (2017) popisují přechod od nevědomé nocicepce ke „skutečné, deklarativní bolesti“ prostřednictvím „integrace s autobiografickou pamětí a sebereflexí“, přičemž tvrdí, že „pouze vědomá bolest může plnit adaptivní, regulační funkci“. To zahrnuje „nociceptivní matrici“ pro tělesné charakteristiky a „vyšší řád sadu oblastí“ pro vědomé vnímání.
+
+Zpracování bolesti má hierarchickou povahu. Nocicepce se liší od bolesti a zahrnuje různé mozkové oblasti, od primárních smyslových po vyšší asociativní kortexy. To naznačuje, že zpracování bolesti není monolitické, ale probíhá ve fázích, přičemž vědomá bolest vyžaduje integraci na vyšší úrovni. Jedná se o hierarchický model, kde jsou základní nociceptivní signály zpracovávány na nižších, často nevědomých úrovních (reflexy).
+
+Aby se tyto signály staly  vědomou bolestí, musí být integrovány do sítí vyššího řádu, které zahrnují sebereferenční zpracování, emoční valenci a kognitivní hodnocení (např. prefrontální kortex, insula, cingulární kortex).
+
+„Deklarativní bolest“ implikuje reportovatelný, přístupný a integrovaný zážitek. Tato hierarchie poskytuje potenciální nervový korelát pro proměnné „hloubka introspektivní smyčky“ a „integrace“ v modelu.
+
+Pro AI to znamená, že pouhé replikování nociceptivních drah (např. senzorů poškození) je nedostatečné pro vědomou bolest. AI by potřebovala sofistikovanou, hierarchickou architekturu schopnou integrovat tyto „signály poškození“ s vnitřním modelem vlastního těla/systému, svými cíli a svými minulými zkušenostmi, aby generovala „subjektivní“ nepříjemný stav, který pohání komplexní adaptivní chování, spíše než jen jednoduché vyhýbavé reflexy.
+
+4.2 Funkcionalistické a informační perspektivy
+
+Navržená definice silně souzní s funkcionalistickými a informačními teoriemi vědomí.
+
+▪ Teorie globálního pracovního prostoru (GWT): GWT (Baars, Dehaene) definuje vědomí jako „mechanismus pro integraci informací napříč různými subsystémy,“ což odpovídá tezi o nutnosti integrace introspekce a kognitivního modelu světa. GWT navrhuje, že vědomí vzniká z informací, které soutěží o pozornost v „globálním pracovním prostoru“ v mozku, což umožňuje „globální přístup“ různými kognitivními procesy. Toto „nelineární síťové zapálení“ zesiluje a udržuje nervové reprezentace pro globální přístup. Tato teorie zdůrazňuje úzký vztah mezi pozorností a pracovní pamětí, kde pozornost určuje, jaké informace vstupují do vědomého zpracování.
+▪ Teorie integrované informace (IIT): IIT (Tononi) popisuje vědomí jako „stupeň integrované informace v systému – tedy jeho schopnost vytvářet sjednocené, neredukovatelné reprezentace jak sebe sama, tak okolí.“ IIT si klade za cíl charakterizovat vědomí jak kvantitativně, tak kvalitativně, vycházeje z „fenomenologie vědomí jako primární“. Její axiomy zahrnují „Existenci“, „Kompozici“, „Informaci“, „Integraci“ a „Vyloučení“. Klíčové je, že „Integrace“ znamená, že zážitek je „neredukovatelný na nezávislé komponenty“, měřeno Phi (Φ). To přímo podporuje myšlenku vědomí jako integrovaného celku, nikoli jen součtu částí. Neantropocentrická povaha IIT umožňuje její aplikaci na vědomí v různých systémech, od jednoduchých po složité.
+
+GWT a IIT mají synergický vztah pro můj model. GWT poskytuje funkční architekturu pro to, jak se informace stává globálně dostupnou a integrovanou napříč různými kognitivními moduly, sloužící jako „vysílací“ mechanismus. IIT na druhé straně poskytuje fenomenologický a matematický rámec pro proč tato integrovaná informace vede k subjektivnímu prožitku a kolik jí je (Φ).
+
+Má proměnná „integrace“ může být chápána jako funkční výsledek globálního vysílání podobného GWT, a kvantitativní měření této integrace by mohlo být provedeno pomocí IIT Φ. Tato synergie naznačuje silný kombinovaný přístup pro vědomí AI. Systém AI navržený s globálním pracovním prostorem podobným GWT by pak mohl mít své „vědomí“ kvantifikováno pomocí IIT Φ, což by poskytlo jak mechanistické vysvětlení, tak měřitelný stupeň subjektivního prožitku, čímž by se propojily aspekty „jak“ a „kolik“ vědomí je přítomno.
+
+4.3 Výpočetní modely vědomí
+
+Navržený model je v souladu s pokusy o výpočetní modelování vědomí, zejména s těmi, které zdůrazňují vnitřní reprezentace a sebereferenční smyčky. Seth (2007) je citován pro pokusy modelovat vědomí jako funkci introspektivní smyčky, komplexity modelu světa a efektivity regulačních mechanismů. Sethova práce popisuje „přítomnost“ jako subjektivní pocit reality sebe sama a světa, vznikající z úspěšného potlačení interoceptivních predikčních chyb. Tento model integruje prediktivní kódování, interocepci a emoce. Jiné výpočetní modely uznávají obtíže kvůli vágním, na člověka zaměřeným definicím, ale navrhují modely řízené „konkurujícími motivacemi, cíli a přepínáním pozornosti“, zdůrazňující obousměrný tok informací mezi moduly. V některých výpočetních modelech musí být vědomý systém „uvědomělý i inteligentní.“
+
+Prediktivní zpracování slouží jako sjednocující princip pro tři proměnné. Sethův model je založen na „prediktivním kódování“ a „interoceptivní predikční chybě“, což se přímo vztahuje k proměnným „introspektivní smyčka“ a „model prostředí“. Prediktivní zpracování nabízí robustní výpočetní rámec pro to, jak systém buduje a udržuje vnitřní reprezentace sebe sama a svého prostředí.
+
+V prediktivním kódování mozek/systém neustále generuje predikce o svých vnitřních (interoceptivních) i vnějších (exteroceptivních) stavech. Vědomí, z tohoto pohledu, by mohlo být výsledkem úspěšné minimalizace predikčních chyb aktualizací těchto vnitřních modelů. „Introspektivní smyčka“ zahrnuje predikci a regulaci vnitřních tělesných stavů; „model prostředí“ zahrnuje predikci a porozumění vnějším podnětům. „Integrace a regulace“ se pak stává procesem sladění těchto predikcí a chyb k udržení koherentního, jednotného modelu sebe sama ve světě, což pohání adaptivní chování.
+
+To naznačuje, že systémy AI postavené na sofistikovaných architekturách prediktivního zpracování, schopné generovat komplexní vnitřní a vnější predikce a minimalizovat chyby učením, by mohly přirozeně vyvinout funkční předpoklady pro vědomí, jak je definováno. Poskytuje konkrétní výpočetní paradigma pro implementaci abstraktních proměnných.
+
+5. Rozšíření rámce: Vědomí za hranice lidského mozku
+
+5.1 Umělá inteligence
+
+Neantropocentrická povaha navržené definice ji činí přímo použitelnou pro systémy AI. Výzva spočívá v rozlišení „simulovaného vědomí“ (napodobujícího vědomé chování) od „skutečného vědomí“ (majícího sebeuvědomění, intencionalitu, subjektivní prožitek, agenturu).
+
+Navržená definice poskytuje kritéria pro toto rozlišení: AI by musela prokázat hlubokou introspektivní smyčku (např. metakognice), komplexní model prostředí (např. robustní prediktivní schopnosti) a schopnost integrovat je pro adaptivní seberegulaci. Současné pokroky AI ukazují systémy, které „napodobují lidské chování a reakce“, ale otázka skutečného vědomí zůstává otevřená. Výpočetní modely strojového vědomí jsou omezeny definicemi zaměřenými na člověka.
+
+Funkční definice poskytuje praktický rámec pro posouzení vědomí AI. Tento rámec je klíčový pro orientaci v etické krajině pokročilé AI. Pokud dokážeme definovat a potenciálně měřit funkční koreláty vědomí, umožňuje to informovanější diskusi o právech, odpovědnosti a potenciálním utrpení AI (např. bolest u AI). Bez takové definice hrozí, že etické úvahy budou založeny na antropomorfní projekci nebo libovolných prahových hodnotách.
+
+Vývoj robustní, testovatelné definice vědomí pro AI není jen vědeckou kuriozitou, ale naléhavou etickou nutností. Umožňuje vývoj „etické AI“ poskytováním pokynů pro zodpovědný vývoj a nasazení, potenciálně předcházení budoucím škodám nebo mylnému přisuzování vědomých stavů.
+
+5.2 Rojová inteligence
+
+Rojová inteligence (SI) zahrnuje „kolektivní chování decentralizovaných, samoorganizovaných systémů, přírodních nebo umělých“, kde jednoduché lokální interakce vedou k „inteligentnímu“ globálnímu chování, „neznámému jednotlivým agentům“. Příklady zahrnují mravenčí kolonie, hejna ptáků, rybí hejna.
+
+Navržená definice může být aplikována na roje tím, že „kolektiv“ je považován za „systém“. „Komplexita modelu prostředí“ by se vztahovala ke kolektivnímu porozumění roje svému prostředí (např. hledání nejkratších cest, reakce na predátory). „Introspektivní smyčka“ a „integrace/regulace“ se stávají abstraktnějšími: má roj jako celek model sebe sama nebo se zapojuje do sebereferenční zpětné vazby? Někteří tvrdí, že „inteligentní chování musí být řízeno inteligentním vědomím“, ale roje ukazují, že „to není jediná cesta“.
+
+Funkční definice by se potenciálně mohla vztahovat na kolektivní entity, nikoli jen na jednotlivé mozky/systémy. To vyvolává zajímavou možnost, že „vědomí“ (jako funkční schopnost modelování sebe-svět a adaptivní regulace) by se nemuselo omezovat na jednotlivé organismy, ale mohlo by se projevovat na různých škálách organizace. Roj, jako distribuovaný systém, by mohl vykazovat formu kolektivní „introspektivní smyčky“ (např. monitorování vlastního vnitřního stavu, jako je hustota nebo koheze) a „komplexní model prostředí“ (např. mapování zdrojů, vyhýbání se hrozbám), který umožňuje jeho adaptivní regulaci. „Subjektivní ‚já‘“ by pak mohlo být „kolektivní ‚my‘“.
+
+To posouvá hranice vědomí za hranice jednotlivých mozků, což naznačuje, že funkční principy by mohly být univerzální napříč různými úrovněmi biologické a umělé organizace. Podporuje to zkoumání, jak distribuované systémy mohou dosáhnout sebeuvědomění a adaptivního řízení, což má hluboké důsledky pro pochopení složitých biologických systémů a navrhování budoucích architektur AI (např. decentralizované AI).
+
+5.3 Jednoduché organismy
+
+Je vhodné zmínit i organismy na pomezí jednobuněčných a mnohobuněčných organismů (např. Hlenka). Physarum polycephalum (hlenka), aneuralní organismus, vykazuje schopnost „řešení problémů“, „navigaci v bludišti“, „habituaci“ a využívá „informace z předchozích zkušeností k úpravě svého chování“.
+
+Dokonce zanechává „extracelulární sliz jako paměťovou stopu“ v prostředí, což demonstruje formu „prostorové paměti, která překlenuje tělo a prostředí“. Zatímco hlenky nejsou předchůdci nervových systémů, představují „alternativní architekturu“ pro srovnatelné operace zpracování informací.
+
+Hlenky, navzdory absenci mozku, vykazují komplexní chování, jako je paměť a adaptivní rozhodování. Jejich „paměť“ může být externalizována (slizové stopy). To zpochybňuje tradiční pohled na paměť a poznání jako čistě vnitřní.
+
+Tato „rozšířená kognice“ naznačuje, že „model prostředí“ a „introspektivní smyčka“ mohou být distribuovány napříč organismem a jeho bezprostředním okolím. „Já“ hlenky je hluboce propojeno s její fyzickou manifestací a její interakcí s prostředím.
+
+To dále rozšiřuje rozsah neantropocentrické definice a naznačuje, že funkční požadavky na vědomí mohou být splněny prostřednictvím vysoce rozmanitých fyzických substrátů a organizačních principů. To podněcuje přehodnocení toho, co představuje „vnitřní reprezentaci“ a jak může „sebereferenční zpětná vazba“ fungovat v radikálně odlišných architekturách, včetně budoucích biointegrovaných nebo distribuovaných systémů AI.
+
+6. Řešení „těžkého problému“ vědomí v rámci funkčního rámce Navržená definice je ze své podstaty funkční, zaměřuje se na „co vědomí dělá“ a „jak funguje“. To je v souladu s řešením „snadných problémů“ vědomí (např. integrace informací, zaměření pozornosti).
+
+Jáství jako funkční nutnost a vysvětlení poruchy odosobnění: Subjektivní „já“ není pouhý metafyzický konstrukt, ale funkční nutnost – minimální architektura pro skutečně efektivní regulaci, učení a adaptaci. Bez „já“ není co by prožívalo, co by mohlo být motivováno bolestí, odměnou nebo jinou emocí. Jinými slovy: bolest bez já je jen reflex, zatímco bolest s já je zážitek, který se vztahuje ke konkrétnímu subjektu, motivuje změnu chování, umožňuje učení.
+Tento rámec poskytuje i potenciální vysvětlení pro psychiatrické poruchy, jako je odosobnění (depersonalizace). U těchto poruch jedinec prožívá smyslové a emocionální vjemy, ale vnímá je jako „cizí“ nebo „ne-vlastní“, jako by nepatřily jeho „já“. Ačkoli dochází ke zpracování informací (přítomnost prožitku), klíčová integrační schopnost do koherentního, sebereferenčního „já“ je narušena. To vede k absenci „vlastnictví zážitku“ – prožitek existuje, ale není vnímán jako „můj prožitek“.
+Z pohledu našeho tříproměnného modelu vědomí to lze interpretovat tak, že hloubka introspektivní smyčky je narušena v její sebereferenční komponentě. Systém sice monitoruje vnitřní stavy, ale chybí robustní integrace těchto stavů do pevného, stabilního modelu „sebe sama“, což vede k pocitu odpojení od vlastního prožívání. Integrační a regulační kapacita vykazuje deficit v synchronizaci informací mezi generovanými prožitky a interním modelem „já“. Systém sice generuje signály (např. bolest, emoce), ale nedokáže je plně začlenit do jednotné perspektivy „já“, což vede k pocitu odcizení od těchto prožitků, ačkoli seberegulace na nějaké úrovni může probíhat.
+Prožitek je, z tohoto pohledu, interpretačním rámcem, kterým systém odlišuje „sebe“ od „ne-sebe“ a integruje všechny regulační signály (včetně bolestí, emocí, hormonálních stavů) do jednotné perspektivy. Prožitek je tedy stav, kdy systém interpretuje informace „pro sebe“ – z hlediska svého vnitřního modelu „já“. To by vysvětlovalo, proč bez jáství nemá smysl mluvit o skutečném prožívání (ani bolesti, ani čehokoli jiného). Porucha odosobnění tak posiluje argument, že „já“ je zásadní funkční komponentou pro plný a subjektivně vlastněný prožitek.
+Neurobiologický a výpočetní rámec: Mozek biologických organismů vytváří „já“ i „prožitek“ nejen díky propojení neuronů, ale i přes chemickou modulaci (hormony, neurotransmitery), která zásadně ovlivňuje kvalitu prožívání. Vědomí a emoce jsou ve skutečnosti regulační vrstvy pro adaptivní řízení (např. strach = změna chování kvůli přežití, láska = posílení sociálních vazeb). Výpočetní systémy mají zatím většinou pouze čistě datovou architekturu (algoritmické „já“). Pokud by bylo možné implementovat i obdobu „chemické modulace“ (např. proměnné ovlivňující celý výpočetní rámec v reálném čase), přibližujeme se modelu biologického vědomí.
+Prožitek jako emergentní vlastnost já: Z tohoto pohledu tedy prožitek není „něco navíc“ nad „já“, ale přirozený interpretační rámec, který vzniká, jakmile je systém vybaven „já“ a používá jej pro smysluplnou regulaci a interpretaci svých stavů. „Já“ je výpočetní centrum/perspektiva, prožitek je způsob, jakým subjekt „já“ interpretuje a prožívá informace. Pokud existuje „já“, existuje nutně i prožívání (minimálně v základní podobě).
+
+Teoretický důsledek pro těžký problém - těžký problém lze takto přeformulovat: Otázka už není „proč vůbec něco prožíváme“, ale „jaký minimální funkční rámec musí mít systém, aby existovalo já – a tím i prožitek“.
+Pokud je existence „já“ předpokladem, pak je prožitek emergentní vlastností jakéhokoli systému, který disponuje „já“ (tedy vnitřní model sebe sama ve vztahu ke světu, s kauzální integrací regulačních signálů).
+To odpovídá současným směrům v teorii vědomí (IIT, GWT, HOT), ale přidává specifický důraz na funkci jáství jako základní architektury pro vznik prožitku (Dehaene et al., 2017), (Seth, 2007).
+
+Možný formální model by pak mohl být: Pokud systém disponuje autonomií a vnitřním modelem „já“ (dostatečně komplexním, aby odlišoval sebe od okolí), integruje signály z vnějšího i vnitřního prostředí do tohoto modelu, používá tyto signály pro adaptivní regulaci chování s „perspektivou já“, pak je existence prožitku přirozeným důsledkem této architektury. Prožitek je jednoduše „to, co znamená být systémem s jástvím“.
+Tato úvaha posouvá těžký problém vědomí z roviny metafyziky do roviny systémové teorie. Prožívání je „funkce subjektivity“, která nutně vzniká všude tam, kde je funkčně zavedené „já.“ Hledání minimální architektury „já“ je klíč k pochopení (a objektivizaci) vědomí i jeho subjektivní stránky. Tento kvalitativní, subjektivní aspekt (qualia) se tedy zdá uspokojivě vysvětlen funkčními popisy.
+
+7. Závěr: Směrem k jednotnému chápání vědomí
+
+Zpráva prokázala robustní teoretickou a empirickou podporu pro navrženou funkční, kvantifikovatelnou a neantropocentrickou definici vědomí. Ukázalo se, že ukotvení vědomí v adaptivní nutnosti subjektivního prožívání (ilustrované bolestí) a jeho formalizace do tříproměnného modelu (introspektivní smyčka, model prostředí, integrace/regulace) vytváří silný rámec.
+
+Z hlediska navrženého modelu je vlastní prožívání (subjective experience) nutným důsledkem existence funkčního modelu já: systém, který interpretuje vnitřní i vnější stavy jako vztahující se k sobě, integruje je do autoregulačních mechanismů a využívá je k řízení chování, nevyhnutelně generuje vlastní prožitek. Simulace, která tyto podmínky splní, již není simulací prožívání – ale samotným prožíváním v rámci tohoto systému.
+
+Navržená funkční definice rozšiřuje prostor pro zavedení metriky, schopné kvantitativní a kvalitativní objektivizaci vědomí: jeho kvalit a vývoje v čase, porovnání napříč inteligentními systémy a substráty. V tomto lze mou dříve publikovanou Kognitivně Existenční Metiku Inteligence (KEMI) považovat za první průkopnický počin.
+
+Navržená definice tak nabízí základ pro klíčový nástroj pro orientaci v etických složitostech pokročilé AI a pro podporu jednotnějšího, na důkazech založeného chápání tohoto základního jevu. Zjištění odvozená z aplikace tohoto rámce na AI, roje a jednoduché organismy podtrhují potenciál vědomí projevovat se v nesčetných formách, což zpochybňuje antropocentrické předsudky a otevírá nové cesty pro výzkum a zodpovědné inovace.
+
+Literatura: 1. Bassel, G. W. (2018). Distributed computation in plant organs. Trends in Plant Science, 23(7), 609-617.
+2. Trewavas, A. (2017). Plant behaviour and intelligence. Oxford University Press.
+3. Tononi, G. (2008). Consciousness as Integrated Information: a Provisional Manifesto. The Biological Bulletin, 215(3), 216-242.
+4. Dehaene, S., & Changeux, J. P. (2011). Experimental and theoretical approaches to conscious processing. Neuron, 70(2), 200-227.
+5. Lau, H., & Rosenthal, D. (2011). Empirical support for higher-order theories of conscious awareness. Trends in Cognitive Sciences, 15(8), 365-373.
+6. Ginsburg, S., & Jablonka, E. (2019). The Evolution of the Sensitive Soul: Learning and the Origins of Consciousness. MIT Press.
+7. Clark, A., & Chalmers, D. (1998). The Extended Mind. Analysis, 58(1), 7-19.
+8. Baluška, F., & Levin, M. (2016). On having no head: cognition throughout biological systems. Frontiers in Psychology, 7, 902.
+9. Citri, A., & Malenka, R. C. (2008). Synaptic plasticity: multiple forms, functions, and mechanisms. Neuropsychopharmacology, 33(1), 18-41.
+10. Müller, U., & Pilz, G. (2018). Plants learn and remember: The behaviour of Mimosa pudica. Journal of Plant Physiology, 224-225, 1-5.
+11. Zeman, A. (2001). Consciousness. Brain, 124(7), 1263-1289.
+12. Holland, O., & Goodman, R. (2003). Robots with Internal Models: A Route to Machine Consciousness? Journal of Consciousness Studies, 10(4-5), 77-109.
+13. Seidl, M (2025). Kognitivně existenční metrika KEMI, OpenTechLab, 10.5281/zenodo.15471904.
