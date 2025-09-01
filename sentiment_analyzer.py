@@ -4,36 +4,43 @@ from transformers import pipeline
 
 class SentimentAnalyzer:
     def __init__(self):
+        print("Sentiment analyzer preparing (lazy init)...")
+        self.classifier = None
+        self.device_index = 0 if torch.cuda.is_available() else -1
+        if self.device_index == 0:
+            print("Will use CUDA when needed")
+        else:
+            print("Will use CPU when needed")
 
-        try:
-            print("Sentiment analyzer initializating...")
-            device_index = 0 if torch.cuda.is_available() else -1
-            if device_index == 0:
-                print("Using CUDA: cuda:0") #try to avoid CPU
-            else:
-                print("Using CPU") #watch CPU temperature
-
-            self.classifier = pipeline(
-                "sentiment-analysis",
-                model="cardiffnlp/twitter-xlm-roberta-base-sentiment",
-                device=device_index  # 0 => CUDA; -1 => CPU
-            )
-            print("Sentiment analyzer is ready.")
-        except Exception as e:
-            print(f"ERROR: Can not load the sentiment model: {e}")
-            print("Try run: pip install torch transformers sentencepiece protobuf")
-            self.classifier = None
+    def lazy_init(self) -> bool:
+        """Initialize the model only when needed"""
+        if self.classifier is None:
+            try:
+                print("Loading sentiment model...")
+                self.classifier = pipeline(
+                    "sentiment-analysis",
+                    model="cardiffnlp/twitter-xlm-roberta-base-sentiment",
+                    device=self.device_index
+                )
+                print("Sentiment model loaded.")
+                return True
+            except Exception as e:
+                print(f"ERROR: Cannot load sentiment model: {e}")
+                print("Try run: pip install torch transformers sentencepiece protobuf")
+                return False
+        return True
 
     def get_score(self, text: str) -> float:
+        if not text:
+            return 0.0
 
-        if not self.classifier or not text:
+        # Lazy initialization
+        if not self.lazy_init():
             return 0.0
 
         try:
-            truncated_text = text
-            text_bez_user = truncated_text.replace("user: ", "")
+            text_bez_user = text.replace("user: ", "")
             clean_text = text_bez_user.replace("model: ", "")
-            print(f"Text do analyzeru sentimentu: {clean_text}");
             result = self.classifier(clean_text)[0]
 
             score = result.get('score', 0.0)
