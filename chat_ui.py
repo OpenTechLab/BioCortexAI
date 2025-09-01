@@ -5,11 +5,12 @@ import pandas as pd
 import config
 from model import Transformer
 from plant_net import DistributedPlantNetwork
+from generate import generate, get_mood_visualization
 
 MODEL_PATH = "finetuned_model.pth"
 PLANT_STATE_PATH = config.PLANT_NET_STATE_FILE
 
-# === Load model ===
+# === Načtení modelu a tokenizéru ===
 def load_model():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model_data = torch.load(MODEL_PATH, map_location=device)
@@ -37,59 +38,42 @@ def load_model():
     return model, sp, device
 
 model, sp, device = load_model()
-conversation_tokens = [sp.bos_id()]  # conv. history
+conversation_tokens = [sp.bos_id()]  # historie konverzace
 
-# Mood and sentiment history
+# Historie hormonů a sentimentu
 hormone_history = {"dopamin": [], "serotonin": [], "kortizol": [], "oxytocin": []}
 sentiment_history = []
 
-# === Function generate ===
+# === Funkce pro zpracování zprávy ===
 @torch.no_grad()
 def chat_fn(user_input, history):
     global conversation_tokens, hormone_history, sentiment_history
 
     prompt_formatted = f"user: {user_input} model:"
     new_tokens = sp.encode_as_ids(prompt_formatted)
-    conversation_tokens = conversation_tokens + new_tokens
-    decoded_string = sp.decode_ids(conversation_tokens)
-    
-    input_ids = torch.tensor([conversation_tokens], dtype=torch.long, device=device)
-    initial_len = len(conversation_tokens)
+    input_for_generate = conversation_tokens + new_tokens
 
-    sentiment = None
-    for _ in range(100):  # max_new_tokens
-        input_cond = input_ids[:, -config.pretrain_max_seq_len:]
-        logits, hidden_states = model(input_cond, return_hidden=True)
+    # Použijeme generate z generate.py
+    response, hormones, sentiment, updated_tokens = generate(
+        model, sp, device, input_for_generate, new_input_tokens=new_tokens
+    )
+    conversation_tokens = updated_tokens
 
-        if model.use_plant_net and model.plant_layer:
-            sentiment = model.plant_layer.update_state(logits, hidden_states, (decoded_string[-100:]))
+    # Vizualizace nálady (emoji na začátku)
+    mood_emoji, _ = get_mood_visualization(hormones) if hormones else ("😐", "#F5F5F5")
+    final_response = f"{mood_emoji}|{response.strip()}"
 
-        last_logits = logits[:, -1, :]
-        probs = torch.softmax(last_logits, dim=-1)
-        next_id = torch.multinomial(probs, num_samples=1)
-
-        if next_id.item() == sp.eos_id():
-            break
-
-        input_ids = torch.cat([input_ids, next_id], dim=1)
-
-    all_tokens = input_ids[0].tolist()
-    new_generated = all_tokens[initial_len:]
-    response = sp.decode(new_generated).strip()
-    conversation_tokens = all_tokens
-
-    hormones = model.plant_layer.get_global_hormones() if model.use_plant_net else None
+    # Uložení historie hormonů a sentimentu
     if hormones:
         for k in hormone_history.keys():
             hormone_history[k].append(hormones[k])
     sentiment_history.append(sentiment if sentiment is not None else 0.0)
 
-    mood_str = " | ".join([f"{k.capitalize()}: {v:.2f}" for k, v in hormones.items()]) if hormones else "N/A"
-    sentiment_str = f"Sentiment: {sentiment:.2f}" if sentiment is not None else "Sentiment: N/A"
-
+    # Zápis do historie pro chat
     history.append({"role": "user", "content": user_input})
-    history.append({"role": "assistant", "content": f"{response}\n\n[Nálada] {mood_str} | {sentiment_str}"})
+    history.append({"role": "assistant", "content": final_response})
 
+    # Příprava dat pro graf
     chart_data = {
         "step": list(range(len(hormone_history["dopamin"]))),
         "dopamin": hormone_history["dopamin"],
@@ -109,19 +93,15 @@ def chat_fn(user_input, history):
 
     return history, chart_df
 
-
-# === Function reset textbox ===
+# === Funkce resetu a uložení ===
 def reset_msg():
     return ""
 
-
-# === Function manual PlantNet save ===
 def save_plant_state():
     if model.use_plant_net and model.plant_layer:
         model.plant_layer.network.save(PLANT_STATE_PATH)
         return f"✅ Stav rostlinné sítě uložen do: {PLANT_STATE_PATH}"
     return "⚠️ PlantNet není aktivní."
-
 
 # === Gradio UI ===
 with gr.Blocks() as demo:
@@ -155,7 +135,7 @@ with gr.Blocks() as demo:
 
     save_btn.click(save_plant_state, None, status)
 
-# === Launch with autosave ===
+# === Spuštění s autosave ===
 try:
     demo.launch()
 finally:
