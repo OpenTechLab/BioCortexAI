@@ -260,7 +260,7 @@ def main():
                 save_checkpoint(os.path.join(ckpt_dir, "best_checkpoint.pt"), model, optimizer, epoch + 1, iter_num, best_val_loss, is_ddp)
 
             print("--- Generating sample after pretrain ---")
-            prompt = "Byl jednou jeden"
+            prompt = "To je ta pravda, která mě bolí "
             sample = generate_sample(model_to_val, sp, device, prompt)
             print(f"Prompt: '{prompt}'\nVygenerováno: {sample}")
             print("-" * 70)

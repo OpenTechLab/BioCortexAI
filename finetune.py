@@ -288,7 +288,7 @@ def main():
             print(f"Epoch: {epoch+1:02} | Average loss: {avg_loss:.3f} | Last LR: {lr:.7f}")
 
             print("--- Generating a sample after fine-tuning. ---")
-            prompt = "Co je to BioCorexAI a co pro tebe znamená? "
+            prompt = "Existují chytré triky na počítání?"
 
             generated_text = generate_sample(model.module if is_ddp else model, sp, device, prompt)
             print(f"Prompt: '{prompt}'")

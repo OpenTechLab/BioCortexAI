@@ -1,6 +1,6 @@
 ======================================================================
                   TECHNICAL DOCUMENTATION: BioCortexAI
-                             Version: beta 1.0
+                             Version: beta 2.0
 ======================================================================
  (c) 2025, OpenTechLab Jablonec nad Nisou s. r. o.
  Author: Michal Seidl
@@ -10,165 +10,340 @@
 ----------------------------------------------------------------------
 
 BioCortexAI is a hybrid artificial intelligence architecture that integrates
-a standard Transformer-based Large Language Model (LLM) with a
-dynamic, biologically-inspired modulation layer called the
-"Plant Network" (PlantNet).
+a standard large language model (LLM) with Transformer architecture with:
 
-The system's goal is not to alter the trained weights of the LLM during
-inference, but to modulate its computational process in real-time.
-This gives the model an internal state akin to a "mood," the ability
-to form associative "memories," and to adapt its "personality"
-over the long term based on interactions.
+  A) A dynamic, biologically-inspired modulation layer called "PlantNet"
+  B) A phenomenological digital mirror for self-perception and anticipation
+
+The goal of the system is not to change the trained weights of the LLM during
+inference, but to modulate its computational process in real-time. This gives
+the model:
+
+  - An internal state similar to "mood" (hormonal system)
+  - The ability to form associative "memories"
+  - Long-term "personality" adaptation based on interactions
+  - The ability to anticipate user reactions (Digital Mirror)
+  - Learning from prediction error without backpropagation
 
 The result is an AI that behaves less mechanically, is more contextually
-sensitive, and whose responses are influenced by the history of
-previous conversations.
+sensitive, and whose reactions are influenced by the history of previous
+conversations.
 
 
 2. ARCHITECTURE AND KEY COMPONENTS
 ----------------------------------------------------------------------
 
-The project consists of two main, interconnected parts:
+The project consists of three main, interconnected parts:
 
    A. Language Model (LLM)
       - Defined in: `model.py`
-      - Architecture: Modern Decoder-Only Transformer.
-      - Key Technologies:
-          - Rotary Positional Embeddings (RoPE) for position encoding.
-          - SwiGLU feed-forward layers for enhanced efficiency.
-          - Grouped-Query Attention (GQA) for memory and speed optimization.
-      - Task: Processing language, generating coherent responses.
+      - Architecture: Modern Decoder-Only Transformer
+      - Key technologies:
+          - Rotary Positional Embeddings (RoPE)
+          - SwiGLU feed-forward layers
+          - Grouped-Query Attention (GQA)
+      - Task: Language processing, generating coherent responses
 
    B. Plant Network (PlantNet) - Modulation Layer
       - Defined in: `plant_net.py`
-      - Architecture: A distributed 2D grid of self-organizing cells.
-      - Task: To analyze LLM outputs and user interactions, maintain an
-        internal state ("mood"), and dynamically modulate the LLM's
-        behavior in real-time based on this state.
+      - Architecture: Distributed 2D grid of self-organizing cells
+      - Task: Analyze LLM outputs and user interactions, maintain
+        internal state ("mood") and dynamically modulate LLM behavior
+
+   C. Digital Mirror – NEW in 2.0
+      - Defined in: `mirror_module.py`, `mirror_integration.py`, 
+                     `swap_vector_utils.py`
+      - Architecture: Phenomenological pipeline with vector transformation
+      - Task: Enable the model to "see itself" from the other party's
+        perspective, anticipate user reactions, and learn from prediction error
 
 
 3. PLANT NETWORK (PLANTNET) - DETAILED DESCRIPTION
 ----------------------------------------------------------------------
 
-PlantNet is the core of BioCortexAI's unique behavior. Its design is
-inspired by concepts from distributed computing in biological systems.
+PlantNet is the core of BioCortexAI's dynamic behavior. Its design is
+inspired by concepts of distributed computation in biological systems.
 
    3.1. Hormonal System (Internal State)
    ---------------------------------------
-   The internal state is represented by four "hormones," whose levels are
+   The internal state is represented by four "hormones", whose levels are
    centered around a neutral value of 1.0:
-      - Dopamine: Associated with curiosity, creativity, and reward from new information.
-      - Serotonin: Associated with stability, well-being, and coherence.
-      - Cortisol: Associated with stress, uncertainty, and caution.
-      - Oxytocin: Associated with social bonding and maintaining context.
 
-   Level = 1.0 -> No influence (standard LLM behavior).
-   Level > 1.0 -> Amplifying influence.
-   Level < 1.0 -> Suppressing influence.
+      - Dopamine: Curiosity, creativity, reward for new information
+      - Serotonin: Stability, well-being, coherence
+      - Cortisol: Stress, uncertainty, caution
+      - Oxytocin: Social bonding, context maintenance
+
+   Level = 1.0 -> No influence (standard LLM behavior)
+   Level > 1.0 -> Amplifying influence
+   Level < 1.0 -> Suppressing influence
 
    3.2. Distributed Cell Network
    -----------------------------
    The network is a 2D grid (`DistributedPlantNetwork`) composed of cells
-   (`PlantCell`), with its structure defined in `config.py` (PLANT_TISSUE_MAP).
-   There are specialized cell types:
-      - SensorCell: Highly sensitive to external stimuli (entropy, sentiment).
-      - MemoryCell: Has a larger and more persistent associative memory.
-      - StructuralCell: Has more stable connections, serving for efficient signal transfer.
-      - PlantCell: A standard, balanced cell.
+   (`PlantCell`), whose structure is defined in `config.py` (PLANT_TISSUE_MAP).
+   
+   Cell types:
+      - SensorCell: Highly sensitive to external stimuli (entropy, sentiment)
+      - MemoryCell: Has larger and more persistent associative memory
+      - StructuralCell: More stable connections, efficient signal transmission
+      - PlantCell: Standard, balanced cell
 
    3.3. Three Levels of Adaptive Learning
    ----------------------------------
-   The network continuously learns and adapts without using backpropagation:
-      1. Short-term (Reaction): Immediate change in hormones based on the last
-         LLM output and user input.
-      2. Medium-term (Memory and Plasticity):
-         - Associative Memory (`AssociativeMemory`): Stores contextual
-           vectors of interactions. "Emotionally" strong experiences (large
-           hormone deviation) are forgotten more slowly.
-         - Dynamic Connectivity: The strength of connections between cells
-           slowly changes based on oxytocin (strengthens) and cortisol
-           (weakens), altering preferred information pathways in the network.
-      3. Long-term (Personality):
-         - Personality Drift (`_personality_drift`): The equilibrium levels
-           of hormones very slowly shift towards the average
-           values experienced by the network. Thus, long-term stress can
-           permanently change the model's "base nature."
+   The network continuously learns and adapts WITHOUT backpropagation:
+
+      1. Short-term (reactions): Immediate hormone changes based on
+         the last LLM output and user input
+      
+      2. Medium-term (memory and plasticity):
+         - Associative memory: Stores context vectors of interactions
+         - "Emotionally" strong experiences are forgotten more slowly
+         - Dynamic connectivity: Connection strength changes based on hormones
+      
+      3. Long-term (personality):
+         - Personality drift: Equilibrium levels slowly shift
+         - Long-term stress can permanently change the model's "base nature"
 
 
-4. LLM AND PLANTNET INTEGRATION
+4. DIGITAL MIRROR – NEW IN 2.0
 ----------------------------------------------------------------------
 
-The integration is implemented as a real-time feedback loop.
+Digital Mirror is a phenomenological module enabling model self-perception.
+
+   4.1. Theoretical Foundation
+   -----------------------
+   Implements the function: f(O_t; u, C, λ) → R_t
+   
+   Where:
+      O_t = Surface output of the model (text + metadata)
+      u   = Observer (LLM, human, critic)
+      C   = Scene context
+      λ   = Vector of mirror axes (deixis, style)
+      R_t = Reflection (perceptual vector + paraphrase)
+
+   4.2. Phenomenological Pipeline
+   ------------------------------
+   Four processing components:
+
+      Φ (Phi) – Surface Extractor
+         - Functions: `analyze_surface()`, `prepare_extended_features()`
+         - Extracts: sentence length, type-token ratio, politeness expressions,
+                      hedging, emphasis, entropy, I/WORLD distribution
+
+      P_u – Projection into Perceptual Space
+         - Function: `project_perception(features, profile)`
+         - Output: PerceptualVector(formality, warmth, assertiveness)
+         - Profiles: LLM (neutral), human (comprehensibility), critic (strict)
+
+      M_λ – Mirror Transformation
+         - Functions: `apply_style()`, `deictic_swap()`
+         - Two independent parameters:
+            λ_deixis ∈ [0,1]: Intensity of I↔YOU swap
+            λ_style ∈ [0,1]: Intensity of style change
+
+      h – Renderer
+         - Functions: `create_human_description()`, `assemble_agent_message()`
+         - Two modes: "human" (readable description), "agent" (structured report)
+
+   4.3. Predictive Loop
+   ------------------------
+   The model anticipates user reactions:
+
+      1. Model generates a response (hidden from user)
+      2. Response is transformed (deictic swap I↔YOU, role swap user↔model)
+      3. Transformed text is presented to the model as simulated input
+      4. Model generates "expected user response"
+      5. Expectation vectors are stored in ExpectationBuffer
+      6. Original response is displayed to the user
+      7. User replies → actual vectors are compared with expectations
+      8. Prediction error modulates PlantNet hormones
+
+   4.4. Perspective Swap Methods
+   ---------------------------------
+   Two implementations:
+
+      "text" – Regex-based swap
+         - Fast, but ignores Czech inflection
+         - Replaces pronouns and role patterns
+
+      "embedding" – Vector swap (RECOMMENDED)
+         - Transformation directly in hidden space
+         - Swap vector derived from contrastive pairs:
+           "I am here" ↔ "You are here"
+         - Defined in: `swap_vector_utils.py`
+         - Derivation: `python swap_vector_utils.py --output swap_vector.pt`
+
+   4.5. Learning from Prediction Error
+   -----------------------------
+   Comparison of expectation with reality:
+
+      Metric: Cosine distance of mean vectors
+
+      Prediction quality:
+         error < 0.25   → GOOD  → +serotonin, +oxytocin (model "understands")
+         error > 0.60   → BAD   → +cortisol, +dopamine (surprise, learning)
+         otherwise      → NEUTRAL → minimal change
+
+      Hormone deltas are applied to all PlantNet cells.
+
+
+5. COMPONENT INTEGRATION
+----------------------------------------------------------------------
+
+Integration is realized as an extended feedback loop.
 
    STEP 1: LLM Modulation (Feed-forward)
    -----------------------------------
-   - PlantNet provides the current global hormone state.
-   - In `model.py` (`TransformerBlock` and `Attention`), these hormones modulate the computation:
-     - Dopamine: Multiplies the `Value` vectors in the attention mechanism,
-       influencing how much weight the model gives to observed information.
-     - Serotonin, Cortisol, Oxytocin: Modulate the strength of residual
-       connections, thereby affecting stability, coherence, and
-       signal suppression under "stress."
+   - PlantNet provides current global hormone state
+   - In `model.py` these hormones modulate computation:
+     - Dopamine: Multiplies Value vectors in Attention
+     - Serotonin, Cortisol, Oxytocin: Modulate residual connections
 
-   STEP 2: Feedback to PlantNet
+   STEP 2: Response Generation
+   ---------------------------
+   - LLM performs forward pass and returns logits and hidden_states
+   - `generate.py` calls `generate_with_mirror()` or `generate_base()`
+
+   STEP 3: Feedback to PlantNet
    --------------------------------
-   - The LLM performs a `forward` pass and returns `logits` and `hidden_states`.
-   - The controlling script (`generate.py`, `chat_ui.py`) calls `plant_layer.update_state()`.
-   - `PlantLayer` calculates 4 signals from the LLM's output and user text:
-     1. Entropy: From `logits`. A measure of the model's uncertainty.
-        High entropy increases cortisol.
-     2. Latent Deviation: From `hidden_states`. A measure of topic change.
-        Large deviation increases dopamine.
-     3. Sentiment: From the text (`sentiment_analyzer.py`). Affects all hormones.
-     4. Context Vector: From `hidden_states`. Stored in associative memory.
+   - `plant_layer.update_state()` calculates 4 signals:
+     1. Entropy: From logits (model uncertainty)
+     2. Latent deviation: From hidden_states (topic change)
+     3. Sentiment: From user text
+     4. Context vector: For associative memory
 
-   This cycle repeats with each interaction, maintaining a dynamic state.
+   STEP 4: Mirror Loop (if USE_MIRROR_MODULE = True)
+   ---------------------------------------------------------
+   - Response → swap → expectation generation → storage
+   - On next input: comparison → hormone modulation
 
 
-5. WORKFLOW AND SCRIPTS
+6. WORKFLOW AND SCRIPTS
 ----------------------------------------------------------------------
 
-The system has a clearly defined and separated workflow.
-
-   5.1. Phase 1: Data Preparation
+   6.1. Phase 1: Data Preparation
    -------------------------
-   - Goal: Prepare the text corpus for training.
-   - Scripts in `nastroje_pro_data/`:
-     - `preprocess_corpus.py`: Processes raw texts into a single clean file.
-     - `prepare_tokenizer.py`: Trains a BPE tokenizer.
-     - `chunk_corpus.py`: Converts text into binary chunks for efficient loading.
+   Scripts in `data_tools/`:
+      - `preprocess_corpus.py`: Processes raw texts
+      - `prepare_tokenizer.py`: Trains BPE tokenizer
+      - `chunk_corpus.py`: Converts to binary blocks
 
-   5.2. Phase 2: LLM Training
+   6.2. Phase 2: LLM Training
    ------------------------
-   - Goal: Create the trained weights for the base LLM.
-   - Scripts: `pretrain.py`, `finetune.py`.
-   - Important: During training, PlantNet is ALWAYS inactive (`USE_PLANT_NETWORK = False`).
-     This ensures the LLM learns pure language patterns without any modulation bias.
+   Scripts: `pretrain.py`, `finetune.py`
+   IMPORTANT: PlantNet ALWAYS inactive (`USE_PLANT_NETWORK = False`)
 
-   5.3. Phase 3: Model Export for Deployment
-   ---------------------------------------
-   - Goal: Create a single, self-contained model file for distribution.
-   - Script: `export_model.py`.
-   - It packages the training checkpoint, configuration, and a **clean, default state of PlantNet**
-     into a single file (`.pth`).
+   6.3. Phase 3: Model Export
+   --------------------------
+   Script: `export_model.py`
+   Output: Single `.pth` file with model and default PlantNet state
 
-   5.4. Phase 4: Interaction and Inference
+   6.4. Phase 4: Swap Vector Derivation (NEW)
+   -----------------------------------------
+   Script: `swap_vector_utils.py`
+   Output: `swap_vector.pt` for embedding-space swap
+
+   6.5. Phase 5: Interaction and Inference
    ----------------------------------
-   - Goal: Use the final, stateful chatbot.
-   - Scripts: `generate.py` (CLI), `chat_UI.py` (Gradio UI).
-   - They load the exported `.pth` file. PlantNet is fully active.
-   - The PlantNet state is automatically saved to and loaded from
-     `plant_net_state.json`, preserving continuity between sessions.
+   Scripts: `generate.py` (CLI), `chat_ui.py` (Gradio UI)
+   - PlantNet fully active
+   - Digital Mirror active (if USE_MIRROR_MODULE = True)
+   - State is saved to `plant_net_state.json`
 
 
-6. CONFIGURATION
+7. CONFIGURATION
 ----------------------------------------------------------------------
-All system parameters are centralized in the `config.py` file.
-- Model architecture (size, number of layers, heads).
-- Training parameters (learning rate, batch size).
-- Paths to data and checkpoints.
-- `PLANT_TISSUE_MAP`: Defines the structure and "personality" of individual cells in the PlantNet.
-- `USE_PLANT_NETWORK`: A global switch to activate/deactivate the modulation layer.
+
+All parameters are centralized in `config.py`.
+
+   7.1. Basic Parameters
+   -----------------------
+   - Model architecture (size, layers, heads)
+   - Training parameters (learning rate, batch size)
+   - Paths to data and checkpoints
+   - PLANT_TISSUE_MAP: PlantNet network structure
+   - USE_PLANT_NETWORK: Modulation layer activation
+
+   7.2. Digital Mirror Parameters (NEW)
+   ------------------------------------
+   USE_MIRROR_MODULE = True           # Main switch
+   MIRROR_SWAP_METHOD = "embedding"   # "text" or "embedding"
+   
+   MIRROR_LAMBDA_DEIXIS = 1.0         # I↔YOU swap intensity
+   MIRROR_LAMBDA_STYL = 0.3           # Style change intensity
+   
+   MIRROR_ERROR_THRESHOLD_LOW = 0.25  # Threshold for good prediction
+   MIRROR_ERROR_THRESHOLD_HIGH = 0.60 # Threshold for bad prediction
+   
+   MIRROR_GOOD_PREDICTION = {         # Hormones on correct anticipation
+       "serotonin": +0.030,
+       "oxytocin": +0.040,
+   }
+   
+   MIRROR_BAD_PREDICTION = {          # Hormones on surprise
+       "cortisol": +0.035,
+       "dopamine": +0.025,
+   }
+   
+   MIRROR_DEBUG = True                # Detailed mirror output
+
+
+8. DIGITAL MIRROR DATA STRUCTURES
+----------------------------------------------------------------------
+
+   8.1. SurfaceOutput
+   ------------------
+   Input structure for the mirror:
+      text: str                       # Text to analyze
+      next_token_probs: List[float]   # For entropy calculation
+      context: str                    # Optional scene context
+
+   8.2. PerceptualVector
+   --------------------
+   Output of P_u projection:
+      formality: float    ∈ [-1, 1]   # Speech formality
+      warmth: float       ∈ [-1, 1]   # Warmth/coldness
+      assertiveness: float ∈ [-1, 1]  # Assertiveness/hesitancy
+      deictic_role: str               # "speaker" / "addressee"
+
+   8.3. MirrorAxes
+   -----------------
+   M_λ transformation parameters:
+      lam_deixis: float   ∈ [0, 1]    # Deictic swap intensity
+      lam_style: float    ∈ [0, 1]    # Style change intensity
+
+   8.4. MirrorConfig
+   -----------------
+   Simplified configuration (compatible with prototype):
+      observer: ObserverProfile
+      axis: MirrorAxes
+
+   8.5. ExtendedReflection
+   ---------------------
+   Mirror analysis output:
+      description_text: str           # Human-readable description
+      paraphrase_text: str            # Text after deictic swap
+      agent_message: str              # Structured report
+      vector: PerceptualVector        # Perceptual dimensions
+      lambda_used: Dict               # {"deixis": x, "style": y}
+
+   8.6. ExpectationBuffer
+   ----------------------
+   Buffer for predictive loop:
+      vectors: Tensor                 # Hidden states of expectation
+      mean_vector: ndarray            # Mean for quick comparison
+      expected_text: str              # Expected response (text)
+      swapped_context: str            # Used swapped context
+
+   8.7. PredictionResult
+   ---------------------
+   Result of expectation vs reality comparison:
+      prediction_error: float         # Error (0 = perfect)
+      cosine_similarity: float        # Vector similarity
+      quality: str                    # "good" / "neutral" / "bad"
+      hormone_deltas: Dict            # Changes for PlantNet
+
 
 ======================================================================
                          END OF DOCUMENTATION

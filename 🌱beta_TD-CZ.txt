@@ -1,6 +1,6 @@
 ======================================================================
                   TECHNICKÁ DOKUMENTACE: BioCortexAI
-                             Verze: beta 1.0
+                             Verze: beta 2.0
 ======================================================================
  (c) 2025, OpenTechLab Jablonec nad Nisou s. r. o.
  Autor: Michal Seidl
@@ -10,14 +10,19 @@
 ----------------------------------------------------------------------
 
 BioCortexAI je hybridní architektura umělé inteligence, která integruje
-standardní velký jazykový model (LLM) architektury Transformer s
-dynamickou, biologicky inspirovanou modulační vrstvou nazvanou 
-"rostlinná síť" (PlantNet).
+standardní velký jazykový model (LLM) architektury Transformer s:
+
+  A) Dynamickou, biologicky inspirovanou modulační vrstvou „PlantNet"
+  B) Fenomenologickým digitálním zrcadlem pro sebepercepci a anticipaci
 
 Cílem systému není měnit natrénované váhy LLM během inference, ale v
-reálném čase modulovat jeho výpočetní proces. To dává modelu vnitřní
-stav podobný "náladě", schopnost tvořit si asociativní "vzpomínky"
-a dlouhodobě adaptovat svou "osobnost" na základě interakcí.
+reálném čase modulovat jeho výpočetní proces. To dává modelu:
+
+  - Vnitřní stav podobný „náladě" (hormonální systém)
+  - Schopnost tvořit si asociativní „vzpomínky"
+  - Dlouhodobou adaptaci „osobnosti" na základě interakcí
+  - Schopnost anticipovat reakce uživatele (Digital Mirror)
+  - Učení z predikční chyby bez zpětné propagace
 
 Výsledkem je AI, která se chová méně mechanicky, je kontextuálně 
 citlivější a jejíž reakce jsou ovlivněny historií předchozích rozhovorů.
@@ -26,147 +31,317 @@ citlivější a jejíž reakce jsou ovlivněny historií předchozích rozhovor�
 2. ARCHITEKTURA A KLÍČOVÉ KOMPONENTY
 ----------------------------------------------------------------------
 
-Projekt se skládá ze dvou hlavních, vzájemně propojených částí:
+Projekt se skládá ze tří hlavních, vzájemně propojených částí:
 
    A. Jazykový model (LLM)
       - Definován v: `model.py`
-      - Architektura: Moderní Decoder-Only Transformer.
+      - Architektura: Moderní Decoder-Only Transformer
       - Klíčové technologie:
-          - Rotary Positional Embeddings (RoPE) pro poziční kódování.
-          - SwiGLU feed-forward vrstvy pro vyšší efektivitu.
-          - Grouped-Query Attention (GQA) pro optimalizaci paměti a rychlosti.
-      - Úkol: Zpracování jazyka, generování koherentních odpovědí.
+          - Rotary Positional Embeddings (RoPE)
+          - SwiGLU feed-forward vrstvy
+          - Grouped-Query Attention (GQA)
+      - Úkol: Zpracování jazyka, generování koherentních odpovědí
 
    B. Rostlinná síť (PlantNet) - Modulační vrstva
       - Definován v: `plant_net.py`
-      - Architektura: Distribuovaná 2D mřížka samoorganizujících se buněk.
+      - Architektura: Distribuovaná 2D mřížka samoorganizujících se buněk
       - Úkol: Analyzovat výstupy LLM a interakce s uživatelem, udržovat
-        vnitřní stav ("náladu") a na jeho základě dynamicky modulovat
-        chování LLM v reálném čase.
+        vnitřní stav („náladu") a dynamicky modulovat chování LLM
+
+   C. Digitální zrcadlo (Digital Mirror) – NOVÉ v 2.0
+      - Definován v: `mirror_module.py`, `mirror_integration.py`, 
+                     `swap_vector_utils.py`
+      - Architektura: Fenomenologický pipeline s vektorovou transformací
+      - Úkol: Umožnit modelu „vidět sám sebe" z perspektivy druhé strany,
+        anticipovat reakce uživatele a učit se z predikční chyby
 
 
 3. ROSTLINNÁ SÍŤ (PLANTNET) - DETAILNÍ POPIS
 ----------------------------------------------------------------------
 
-PlantNet je jádrem unikátního chování BioCortexAI. Její design je
+PlantNet je jádrem dynamického chování BioCortexAI. Její design je
 inspirován koncepty distribuovaných výpočtů v biologických systémech.
 
    3.1. Hormonální systém (Vnitřní stav)
    ---------------------------------------
-   Vnitřní stav je reprezentován čtyřmi "hormony", jejichž hladina je
+   Vnitřní stav je reprezentován čtyřmi „hormony", jejichž hladina je
    centrovaná kolem neutrální hodnoty 1.0:
-      - Dopamin: Spojen se zvědavostí, kreativitou a odměnou za nové informace.
-      - Serotonin: Spojen se stabilitou, pohodou a koherencí.
-      - Kortizol: Spojen se stresem, nejistotou a opatrností.
-      - Oxytocin: Spojen se sociální vazbou a udržováním kontextu.
 
-   Hladina = 1.0 -> Žádný vliv (standardní chování LLM).
-   Hladina > 1.0 -> Zesilující vliv.
-   Hladina < 1.0 -> Potlačující vliv.
+      - Dopamin: Zvědavost, kreativita, odměna za nové informace
+      - Serotonin: Stabilita, pohoda, koherence
+      - Kortizol: Stres, nejistota, opatrnost
+      - Oxytocin: Sociální vazba, udržování kontextu
+
+   Hladina = 1.0 -> Žádný vliv (standardní chování LLM)
+   Hladina > 1.0 -> Zesilující vliv
+   Hladina < 1.0 -> Potlačující vliv
 
    3.2. Distribuovaná síť buněk
    -----------------------------
    Síť je 2D mřížka (`DistributedPlantNetwork`) složená z buněk
    (`PlantCell`), jejíž struktura je definována v `config.py` (PLANT_TISSUE_MAP).
-   Existují specializované typy buněk:
-      - SensorCell: Vysoce citlivá na vnější podněty (entropie, sentiment).
-      - MemoryCell: Má větší a trvalejší asociativní paměť.
-      - StructuralCell: Má stabilnější spojení, slouží k efektivnímu přenosu signálů.
-      - PlantCell: Standardní, vyvážená buňka.
+   
+   Typy buněk:
+      - SensorCell: Vysoce citlivá na vnější podněty (entropie, sentiment)
+      - MemoryCell: Má větší a trvalejší asociativní paměť
+      - StructuralCell: Stabilnější spojení, efektivní přenos signálů
+      - PlantCell: Standardní, vyvážená buňka
 
    3.3. Tři úrovně adaptivního učení
    ----------------------------------
-   Síť se neustále učí a adaptuje bez použití zpětné propagace:
-      1. Krátkodobá (reakce): Okamžitá změna hormonů na základě posledního
-         výstupu LLM a vstupu uživatele.
+   Síť se neustále učí a adaptuje BEZ zpětné propagace:
+
+      1. Krátkodobá (reakce): Okamžitá změna hormonů na základě
+         posledního výstupu LLM a vstupu uživatele
+      
       2. Střednědobá (paměť a plasticita):
-         - Asociativní paměť (`AssociativeMemory`): Ukládá kontextové
-           vektory interakcí. "Emocionálně" silné zážitky (velká
-           odchylka hormonů) se zapomínají pomaleji.
-         - Dynamická konektivita: Síla spojení mezi buňkami se pomalu
-           mění na základě oxytocinu (posiluje) a kortizolu (oslabuje),
-           což mění preferované cesty šíření informací v síti.
+         - Asociativní paměť: Ukládá kontextové vektory interakcí
+         - „Emocionálně" silné zážitky se zapomínají pomaleji
+         - Dynamická konektivita: Síla spojení se mění podle hormonů
+      
       3. Dlouhodobá (osobnost):
-         - Drift osobnosti (`_personality_drift`): Rovnovážné hladiny
-           hormonů se velmi pomalu posouvají směrem k průměrným
-           hodnotám, které síť zažívá. Dlouhodobý stres tak může
-           trvale změnit "základní povahu" modelu.
+         - Drift osobnosti: Rovnovážné hladiny se pomalu posouvají
+         - Dlouhodobý stres může trvale změnit „základní povahu" modelu
 
 
-4. PROPOJENÍ LLM A PLANTNET
+4. DIGITÁLNÍ ZRCADLO (DIGITAL MIRROR) – NOVÉ V 2.0
 ----------------------------------------------------------------------
 
-Propojení je realizováno jako zpětnovazební smyčka v reálném čase.
+Digital Mirror je fenomenologický modul umožňující modelu sebepercepci.
+
+   4.1. Teoretický základ
+   -----------------------
+   Implementuje funkci: f(O_t; u, C, λ) → R_t
+   
+   Kde:
+      O_t = Povrchový výstup modelu (text + metadata)
+      u   = Pozorovatel (LLM, člověk, kritik)
+      C   = Kontext scény
+      λ   = Vektor zrcadlových os (deixis, styl)
+      R_t = Reflexe (percepční vektor + parafráze)
+
+   4.2. Fenomenologický pipeline
+   ------------------------------
+   Čtyři komponenty zpracování:
+
+      Φ (Phi) – Extraktor povrchu
+         - Funkce: `analyzuj_povrch()`, `priprav_rozsirene_rysy()`
+         - Extrahuje: délka vět, type-token ratio, zdvořilostní výrazy,
+                      hedging, emfáze, entropie, JÁ/SVĚT rozložení
+
+      P_u – Projekce do percepčního prostoru
+         - Funkce: `projektuj_vnimani(rysy, profil)`
+         - Výstup: PercepcniVektor(formalita, vrelost, asertivita)
+         - Profily: LLM (neutrální), human (srozumitelnost), critic (přísný)
+
+      M_λ – Zrcadlová transformace
+         - Funkce: `aplikuj_styl()`, `deikticky_swap()`
+         - Dva nezávislé parametry:
+            λ_deixis ∈ [0,1]: Intenzita swapu JÁ↔TY
+            λ_styl ∈ [0,1]: Intenzita stylové změny
+
+      h – Renderer
+         - Funkce: `vytvor_lidsky_popis()`, `sestav_agent_zpravu()`
+         - Dva režimy: „human" (čitelný popis), „agent" (strukturovaný report)
+
+   4.3. Prediktivní smyčka
+   ------------------------
+   Model anticipuje reakce uživatele:
+
+      1. Model vygeneruje odpověď (skrytou před uživatelem)
+      2. Odpověď se transformuje (deictic swap JÁ↔TY, swap rolí user↔model)
+      3. Transformovaný text se předloží modelu jako simulovaný vstup
+      4. Model vygeneruje „očekávanou odpověď uživatele"
+      5. Vektory očekávání se uloží do ExpectationBuffer
+      6. Původní odpověď se zobrazí uživateli
+      7. Uživatel odpoví → skutečné vektory se porovnají s očekáváním
+      8. Predikční chyba moduluje hormony PlantNet
+
+   4.4. Metody perspektivního swapu
+   ---------------------------------
+   Dvě implementace:
+
+      „text" – Regex-based swap
+         - Rychlé, ale ignoruje českou flexi
+         - Nahrazuje zájmena a role patterns
+
+      „embedding" – Vektorový swap (DOPORUČENO)
+         - Transformace přímo v hidden space
+         - Swap vektor odvozený z kontrastivních párů:
+           „Já jsem tady" ↔ „Ty jsi tady"
+         - Definován v: `swap_vector_utils.py`
+         - Odvození: `python swap_vector_utils.py --output swap_vector.pt`
+
+   4.5. Učení z predikční chyby
+   -----------------------------
+   Porovnání očekávání s realitou:
+
+      Metrika: Kosinová vzdálenost mean vektorů
+
+      Kvalita predikce:
+         error < 0.25   → GOOD  → +serotonin, +oxytocin (model „rozumí")
+         error > 0.60   → BAD   → +kortizol, +dopamin (překvapení, učení)
+         jinak          → NEUTRAL → minimální změna
+
+      Hormonální delty se aplikují na všechny buňky PlantNet.
+
+
+5. PROPOJENÍ KOMPONENT
+----------------------------------------------------------------------
+
+Propojení je realizováno jako rozšířená zpětnovazební smyčka.
 
    KROK 1: Modulace LLM (Feed-forward)
    -----------------------------------
-   - PlantNet poskytne aktuální globální stav hormonů.
-   - V `model.py` (`TransformerBlock` a `Attention`) tyto hormony modulují výpočet:
-     - Dopamin: Násobí `Value` vektory v mechanismu pozornosti, čímž
-       ovlivňuje, jakou váhu model přikládá zpozorovaným informacím.
-     - Serotonin, Kortizol, Oxytocin: Modulují sílu zbytkových spojení
-       (residual connections), čímž ovlivňují stabilitu, koherenci a
-       potlačení signálu při "stresu".
+   - PlantNet poskytne aktuální globální stav hormonů
+   - V `model.py` tyto hormony modulují výpočet:
+     - Dopamin: Násobí Value vektory v Attention
+     - Serotonin, Kortizol, Oxytocin: Modulují residual connections
 
-   KROK 2: Zpětná vazba do PlantNet (Feedback)
-   -------------------------------------------
-   - LLM provede `forward` pass a vrátí `logits` a `hidden_states`.
-   - Řídící skript (`generate.py`, `chat_ui.py`) zavolá `plant_layer.update_state()`.
-   - `PlantLayer` z výstupů LLM a textu uživatele vypočítá 4 signály:
-     1. Entropie: Z `logits`. Míra nejistoty modelu. Vysoká entropie
-        zvyšuje kortizol.
-     2. Latentní odchylka: Z `hidden_states`. Míra změny tématu.
-        Velká odchylka zvyšuje dopamin.
-     3. Sentiment: Z textu (`sentiment_analyzer.py`). Ovlivňuje všechny hormony.
-     4. Kontextový vektor: Z `hidden_states`. Ukládá se do asociativní paměti.
+   KROK 2: Generování odpovědi
+   ---------------------------
+   - LLM provede forward pass a vrátí logits a hidden_states
+   - `generate.py` volá `generate_with_mirror()` nebo `generate_base()`
 
-   Tento cyklus se opakuje s každou interakcí a udržuje dynamický stav.
+   KROK 3: Zpětná vazba do PlantNet
+   --------------------------------
+   - `plant_layer.update_state()` vypočítá 4 signály:
+     1. Entropie: Z logits (nejistota modelu)
+     2. Latentní odchylka: Z hidden_states (změna tématu)
+     3. Sentiment: Z textu uživatele
+     4. Kontextový vektor: Pro asociativní paměť
+
+   KROK 4: Zrcadlová smyčka (pokud USE_MIRROR_MODULE = True)
+   ---------------------------------------------------------
+   - Odpověď → swap → generování očekávání → uložení
+   - Při dalším vstupu: porovnání → hormonální modulace
 
 
-5. PRACOVNÍ POSTUP A SKRIPTY
+6. PRACOVNÍ POSTUP A SKRIPTY
 ----------------------------------------------------------------------
 
-Systém má jasně definovaný a oddělený pracovní postup.
-
-   5.1. Fáze 1: Příprava dat
+   6.1. Fáze 1: Příprava dat
    -------------------------
-   - Cíl: Připravit textový korpus pro trénink.
-   - Skripty v `nastroje_pro_data/`:
-     - `preprocess_corpus.py`: Zpracuje syrové texty do jednoho čistého souboru.
-     - `prepare_tokenizer.py`: Natrénuje BPE tokenizér.
-     - `chunk_corpus.py`: Převede text na binární bloky pro efektivní načítání.
+   Skripty v `nastroje_pro_data/`:
+      - `preprocess_corpus.py`: Zpracuje syrové texty
+      - `prepare_tokenizer.py`: Natrénuje BPE tokenizér
+      - `chunk_corpus.py`: Převede na binární bloky
 
-   5.2. Fáze 2: Trénink LLM
+   6.2. Fáze 2: Trénink LLM
    ------------------------
-   - Cíl: Vytvořit natrénované váhy pro základní LLM.
-   - Skripty: `pretrain.py`, `finetune.py`.
-   - Důležité: Během tréninku je PlantNet VŽDY neaktivní (`USE_PLANT_NETWORK = False`).
-     To zaručuje, že se LLM učí čisté jazykové vzorce bez modulačního zkreslení.
+   Skripty: `pretrain.py`, `finetune.py`
+   DŮLEŽITÉ: PlantNet VŽDY neaktivní (`USE_PLANT_NETWORK = False`)
 
-   5.3. Fáze 3: Export modelu pro nasazení
-   ---------------------------------------
-   - Cíl: Vytvořit jeden soběstačný soubor s modelem pro distribuci.
-   - Skript: `export_model.py`.
-   - Zabalí tréninkový checkpoint, konfiguraci a **čistý, výchozí stav PlantNet**
-     do jednoho souboru (`.pth`).
+   6.3. Fáze 3: Export modelu
+   --------------------------
+   Skript: `export_model.py`
+   Výstup: Jeden `.pth` soubor s modelem a výchozím stavem PlantNet
 
-   5.4. Fáze 4: Interakce a inference
+   6.4. Fáze 4: Odvození swap vektoru (NOVÉ)
+   -----------------------------------------
+   Skript: `swap_vector_utils.py`
+   Výstup: `swap_vector.pt` pro embedding-space swap
+
+   6.5. Fáze 5: Interakce a inference
    ----------------------------------
-   - Cíl: Používat finální, stavový chatbot.
-   - Skripty: `generate.py` (CLI), `chat_UI.py` (Gradio UI).
-   - Načtou exportovaný `.pth` soubor. PlantNet je plně aktivní.
-   - Stav PlantNet se automaticky ukládá a načítá ze souboru
-     `plant_net_state.json`, čímž je zachována kontinuita mezi spuštěními.
+   Skripty: `generate.py` (CLI), `chat_ui.py` (Gradio UI)
+   - PlantNet plně aktivní
+   - Digital Mirror aktivní (pokud USE_MIRROR_MODULE = True)
+   - Stav se ukládá do `plant_net_state.json`
 
 
-6. KONFIGURACE
+7. KONFIGURACE
 ----------------------------------------------------------------------
-Veškeré parametry systému jsou centralizovány v souboru `config.py`.
-- Architektura modelu (velikost, počet vrstev, hlav).
-- Parametry tréninku (learning rate, batch size).
-- Cesty k datům a checkpointům.
-- `PLANT_TISSUE_MAP`: Definuje strukturu a "osobnost" jednotlivých buněk v síti PlantNet.
-- `USE_PLANT_NETWORK`: Globální přepínač pro aktivaci/deaktivaci modulační vrstvy.
+
+Veškeré parametry jsou centralizovány v `config.py`.
+
+   7.1. Základní parametry
+   -----------------------
+   - Architektura modelu (velikost, vrstvy, hlavy)
+   - Parametry tréninku (learning rate, batch size)
+   - Cesty k datům a checkpointům
+   - PLANT_TISSUE_MAP: Struktura sítě PlantNet
+   - USE_PLANT_NETWORK: Aktivace modulační vrstvy
+
+   7.2. Parametry Digital Mirror (NOVÉ)
+   ------------------------------------
+   USE_MIRROR_MODULE = True           # Hlavní přepínač
+   MIRROR_SWAP_METHOD = "embedding"   # „text" nebo „embedding"
+   
+   MIRROR_LAMBDA_DEIXIS = 1.0         # Intenzita JÁ↔TY swapu
+   MIRROR_LAMBDA_STYL = 0.3           # Intenzita stylové změny
+   
+   MIRROR_ERROR_THRESHOLD_LOW = 0.25  # Práh pro dobrou predikci
+   MIRROR_ERROR_THRESHOLD_HIGH = 0.60 # Práh pro špatnou predikci
+   
+   MIRROR_GOOD_PREDICTION = {         # Hormony při správné anticipaci
+       "serotonin": +0.030,
+       "oxytocin": +0.040,
+   }
+   
+   MIRROR_BAD_PREDICTION = {          # Hormony při překvapení
+       "kortizol": +0.035,
+       "dopamin": +0.025,
+   }
+   
+   MIRROR_DEBUG = True                # Detailní výpisy zrcadla
+
+
+8. DATOVÉ STRUKTURY DIGITAL MIRROR
+----------------------------------------------------------------------
+
+   8.1. SurfaceOutput
+   ------------------
+   Vstupní struktura pro zrcadlo:
+      text: str                       # Text k analýze
+      next_token_probs: List[float]   # Pro výpočet entropie
+      context: str                    # Volitelný kontext scény
+
+   8.2. PercepcniVektor
+   --------------------
+   Výstup projekce P_u:
+      formalita: float    ∈ [-1, 1]   # Formálnost projevu
+      vrelost: float      ∈ [-1, 1]   # Vřelost/chlad
+      asertivita: float   ∈ [-1, 1]   # Asertivita/váhavost
+      deikticka_role: str             # „speaker" / „addressee"
+
+   8.3. ZrcadloveOsy
+   -----------------
+   Parametry transformace M_λ:
+      lam_deixis: float   ∈ [0, 1]    # Intenzita deiktického swapu
+      lam_styl: float     ∈ [0, 1]    # Intenzita stylové změny
+
+   8.4. MirrorConfig
+   -----------------
+   Zkrácená konfigurace (kompatibilní s prototypem):
+      observer: ObserverProfil
+      axis: ZrcadloveOsy
+
+   8.5. RozsirenaReflexe
+   ---------------------
+   Výstup zrcadlové analýzy:
+      popis_text: str                 # Lidsky čitelný popis
+      parafraze_text: str             # Text po deiktickém swapu
+      agent_zprava: str               # Strukturovaný report
+      vektor: PercepcniVektor         # Percepční rozměry
+      lambda_pouzite: Dict            # {"deixis": x, "styl": y}
+
+   8.6. ExpectationBuffer
+   ----------------------
+   Buffer pro predikční smyčku:
+      vectors: Tensor                 # Hidden states očekávání
+      mean_vector: ndarray            # Průměr pro rychlé porovnání
+      expected_text: str              # Očekávaná odpověď (text)
+      swapped_context: str            # Použitý swapnutý kontext
+
+   8.7. PredictionResult
+   ---------------------
+   Výsledek porovnání očekávání s realitou:
+      prediction_error: float         # Chyba (0 = perfektní)
+      cosine_similarity: float        # Podobnost vektorů
+      quality: str                    # „good" / „neutral" / „bad"
+      hormone_deltas: Dict            # Změny pro PlantNet
+
 
 ======================================================================
                          KONEC DOKUMENTACE

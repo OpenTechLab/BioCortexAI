@@ -12,12 +12,12 @@ from sentiment_analyzer import sentiment_analyzer
 
 PERSONALITY_PROFILES = {
     Personality.OPTIMISTIC: {"homeostasis_rate": 0.06, "sensitivities": {"entropy": 0.8, "latent_dev": 1.2, "sentiment": 1.2, "memory": 1.1}},
-    Personality.CAUTIOUS:   {"homeostasis_rate": 0.10, "sensitivities": {"entropy": 1.2, "latent_dev": 0.8, "sentiment": 1.5, "memory": 1.2}},
-    Personality.CURIOUS:    {"homeostasis_rate": 0.08, "sensitivities": {"entropy": 1.1, "latent_dev": 1.3, "sentiment": 1.0, "memory": 1.3}}
+    Personality.CAUTIOUS:   {"homeostasis_rate": 0.10, "sensitivities": {"entropy": 1.2, "latent_dev": 0.8, "sentiment": 1.5, "memory": 1.1}},
+    Personality.CURIOUS:    {"homeostasis_rate": 0.08, "sensitivities": {"entropy": 1.1, "latent_dev": 1.3, "sentiment": 1.0, "memory": 1.1}}
 }
 
 class AssociativeMemory:
-    def __init__(self, max_size=300, decay_rate=0.0002):
+    def __init__(self, max_size=200, decay_rate=0.0002):
         self.max_size, self.decay_rate, self.memory = max_size, decay_rate, deque()
     def _decay(self):
         new_memory, now = deque(), time.time()
@@ -82,6 +82,34 @@ class PlantCell:
             self.hormones[h] += global_influence * (global_signal.get(h, self.hormones[h]) - self.hormones[h])
         self._asymmetric_homeostasis(); self._personality_drift(); self._update_connectivity()
         for h in self.hormones: self.hormones[h] = np.clip(self.hormones[h], self.HORMONE_RANGE[0], self.HORMONE_RANGE[1])
+
+        try:
+            # 1) skóre novosti a rarity (čím vyšší, tím větší motivace zapisovat)
+            novelty = 0.5 * float(latent_dev) + 0.5 * float(min(1.0, float(entropy) / 5.0))
+            rarity = max(0.0, 1.0 - float(self.memory.retrieve_signal(context_vector)))
+
+            # 2) jednoduché prahy (lze později doladit podle logů)
+            should_write = (novelty > 0.20) and (rarity > 0.30)
+
+            if should_write:
+                reaction = {
+                    "entropy":   float(entropy),
+                    "latent_dev": float(latent_dev),
+                    "sentiment": float(sentiment)
+                }
+                # Váhu paměťové stopy navážeme na novost i raritu (0..1)
+                weight = float(np.clip(0.5 * novelty + 0.5 * rarity, 0.05, 1.0))
+
+                self.memory.add(
+                    embedding=np.asarray(context_vector, dtype=np.float32),
+                    reaction=reaction,
+                    hormones={k: float(v) for k, v in self.hormones.items()},
+                    weight=weight
+                )
+        except Exception:
+            # Fail-safe: paměť nesmí rozbít krok buňky
+            pass
+
     def _asymmetric_homeostasis(self):
         for h in self.hormones:
             diff = self.equilibrium[h] - self.hormones[h]
@@ -103,7 +131,7 @@ class PlantCell:
 class SensorCell(PlantCell):
     def __init__(self, personality=Personality.CURIOUS): super().__init__(personality); self.input_sensitivity["entropy"]*=1.5; self.input_sensitivity["sentiment"]*=1.5
 class MemoryCell(PlantCell):
-    def __init__(self, personality=Personality.CAUTIOUS): super().__init__(personality); self.memory = AssociativeMemory(max_size=800, decay_rate=0.00015)
+    def __init__(self, personality=Personality.CAUTIOUS): super().__init__(personality); self.memory = AssociativeMemory(max_size=500, decay_rate=0.00015)
 class StructuralCell(PlantCell):
     def __init__(self, personality=Personality.OPTIMISTIC):
         super().__init__(personality); self.connectivity_drift_rate=0.005
